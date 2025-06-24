@@ -9,5 +9,8 @@ node_modules/
 # npm packages
 iobroker.*.tgz
 
+# ENV
+.env
+
 # OS
 .DS_Store
