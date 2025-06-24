@@ -35,6 +35,10 @@ The following fields must be configured in the adapter:
 
 ## Changelog
 
+### 0.1.3
+
+- Fixed repository metadata and performed required minor adjustments
+
 ### 0.1.2
 
 - Fixed repository metadata and performed required minor adjustments
@@ -48,10 +52,9 @@ The following fields must be configured in the adapter:
 - Initial version with full Admin UI configuration
 - Supports multiple devices and configurable intervals
 
-## Copyright
-
-Copyright (c) 2025 energy-tracker support@best-ios-apps.de
-
 ## License
 
 MIT – see [LICENSE](LICENSE).
+
+Copyright (c) 2017-2025 Bluefox <dogafox@gmail.com>
+Copyright (c) 2015-2025 energy-tracker support@best-ios-apps.de

@@ -5,7 +5,12 @@
     "infoText": {
       "type": "staticText",
       "label": "infoIntro",
-      "newLine": true
+      "newLine": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12,
+      "xl": 12
     },
     "bearerToken": {
       "type": "password",
@@ -15,7 +20,9 @@
       "newLine": true,
       "xs": 12,
       "sm": 12,
-      "md": 6
+      "md": 12,
+      "lg": 6,
+      "xl": 6
     },
     "devices": {
       "type": "table",
@@ -24,6 +31,8 @@
       "xs": 12,
       "sm": 12,
       "md": 12,
+      "lg": 12,
+      "xl": 12,
       "items": [
         {
           "type": "text",

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energy-tracker",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "news": {
+      "0.1.3": {
+        "en": "Fixed repository metadata and performed required minor adjustments",
+        "de": "Metadaten des Repositories korrigiert und kleinere erforderliche Anpassungen vorgenommen",
+        "ru": "Фиксированные метаданные репозитория и выполненные необходимые незначительные корректировки",
+        "pt": "Metadados do repositório corrigido e executados pequenos ajustes necessários para pequenos ajustes",
+        "nl": "Vaste repository -metagegevens en uitgevoerd vereiste kleine aanpassingen",
+        "fr": "Les métadonnées du référentiel fixe et les ajustements mineurs requis requis",
+        "it": "Metadati del repository fissi ed eseguito richiesti regolamenti minori",
+        "es": "Se corrigieron los metadatos del repositorio y realizó ajustes menores requeridos",
+        "pl": "Naprawiono metadane repozytorium i wykonałem wymagane niewielkie korekty",
+        "uk": "Фіксовані метадані сховища та виконані необхідні незначні корективи",
+        "zh-cn": "固定存储库元数据并进行了较小的调整"
+      },
       "0.1.2": {
         "en": "Fixed repository metadata and performed required minor adjustments",
         "de": "Metadaten des Repositories korrigiert und kleinere erforderliche Anpassungen vorgenommen",
@@ -74,14 +87,7 @@
         "name": "Energy Tracker"
       }
     ],
-    "keywords": [
-      "smart home",
-      "iobroker",
-      "energy tracker",
-      "meter readings",
-      "power consumption",
-      "rest api"
-    ],
+    "keywords": ["energy tracker", "meter readings", "power consumption", "rest api"],
     "licenseInformation": {
       "type": "free",
       "license": "MIT"
