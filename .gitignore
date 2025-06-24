@@ -1,0 +1,16 @@
+# Only .github and .vscode allowed
+.*/
+!.github/
+!.vscode/
+
+# Dependencies
+node_modules/
+
+# Build output
+build/
+
+# npm packages
+iobroker.*.tgz
+
+# OS
+.DS_Store

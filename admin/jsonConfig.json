@@ -1,0 +1,53 @@
+{
+  "i18n": true,
+  "type": "panel",
+  "items": {
+    "infoText": {
+      "type": "staticText",
+      "label": "infoIntro",
+      "newLine": true
+    },
+    "bearerToken": {
+      "type": "password",
+      "label": "labelBearerToken",
+      "encrypted": true,
+      "allowSaveWithError": false,
+      "newLine": true
+    },
+    "devices": {
+      "type": "table",
+      "label": "headerDevices",
+      "uniqueColumns": ["deviceId"],
+      "items": [
+        {
+          "type": "text",
+          "attr": "deviceId",
+          "label": "labelDeviceId",
+          "allowEmpty": false,
+          "trim": true
+        },
+        {
+          "type": "text",
+          "attr": "sourceState",
+          "label": "labelSourceState",
+          "allowEmpty": false,
+          "trim": true
+        },
+        {
+          "type": "number",
+          "attr": "sendIntervalHours",
+          "label": "labelSendIntervalHours",
+          "default": 168,
+          "min": 1
+        },
+        {
+          "type": "checkbox",
+          "attr": "allowRounding",
+          "label": "labelAllowRounding",
+          "default": true
+        }
+      ],
+      "newLine": true
+    }
+  }
+}

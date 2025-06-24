@@ -1,0 +1,99 @@
+{
+  "common": {
+    "name": "energy-tracker",
+    "version": "0.1.0",
+    "news": {
+      "0.1.0": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung"
+      }
+    },
+    "titleLang": {
+      "en": "Energy Tracker",
+      "de": "Energy Tracker"
+    },
+    "desc": {
+      "en": "Adapter for sending meter readings to the Energy Tracker platform.",
+      "de": "Adapter zum Senden von Messwerten an die Energy Tracker Plattform."
+    },
+    "authors": [
+      {
+        "name": "Energy Tracker"
+      }
+    ],
+    "keywords": [
+      "smart home",
+      "iobroker",
+      "energy tracker",
+      "meter readings",
+      "power consumption",
+      "rest api"
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "platform": "Javascript/Node.js",
+    "icon": "energy-tracker.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/energy-tracker/ioBroker.energy-tracker/main/admin/energy-tracker.png",
+    "readme": "https://github.com/energy-tracker/ioBroker.energy-tracker/blob/main/README.md",
+    "loglevel": "info",
+    "tier": 3,
+    "mode": "daemon",
+    "type": "energy",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=7.0.0"
+      }
+    ]
+  },
+  "native": {
+    "bearerToken": "",
+    "devices": [
+      {
+        "deviceId": "",
+        "sourceState": "",
+        "sendIntervalHours": 168,
+        "allowRounding": true
+      }
+    ]
+  },
+  "encryptedNative": ["bearerToken"],
+  "protectedNative": ["bearerToken"],
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Device or service connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
+}
