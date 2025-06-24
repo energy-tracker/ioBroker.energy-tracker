@@ -40,7 +40,6 @@ describe("EnergyTrackerApi", () => {
       deviceId: "abc123",
       sourceState: "test.state",
       allowRounding: false,
-      sendIntervalHours: 1,
     } satisfies ioBroker.AdapterDevice;
     adapterMock.getForeignStateAsync.resolves({
       val: 123.456,
@@ -69,7 +68,6 @@ describe("EnergyTrackerApi", () => {
       deviceId: "round1",
       sourceState: "round.state",
       allowRounding: true,
-      sendIntervalHours: 1,
     } satisfies ioBroker.AdapterDevice;
     adapterMock.getForeignStateAsync.resolves({
       val: 123.789,
@@ -92,7 +90,6 @@ describe("EnergyTrackerApi", () => {
       deviceId: "invalid1",
       sourceState: "missing.state",
       allowRounding: false,
-      sendIntervalHours: 1,
     } satisfies ioBroker.AdapterDevice;
     adapterMock.getForeignStateAsync.resolves({
       val: "not-a-number",
@@ -116,7 +113,6 @@ describe("EnergyTrackerApi", () => {
       deviceId: "fail400",
       sourceState: "error.state",
       allowRounding: false,
-      sendIntervalHours: 1,
     } satisfies ioBroker.AdapterDevice;
     adapterMock.getForeignStateAsync.resolves({
       val: 1,

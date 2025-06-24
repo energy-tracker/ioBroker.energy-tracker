@@ -3,7 +3,6 @@ declare global {
     interface AdapterDevice {
       deviceId: string;
       sourceState: string;
-      sendIntervalHours: number;
       allowRounding: boolean;
     }
 

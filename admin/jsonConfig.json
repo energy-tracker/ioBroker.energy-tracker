@@ -49,13 +49,6 @@
           "trim": true
         },
         {
-          "type": "number",
-          "attr": "sendIntervalHours",
-          "label": "labelSendIntervalHours",
-          "default": 168,
-          "min": 1
-        },
-        {
           "type": "checkbox",
           "attr": "allowRounding",
           "label": "labelAllowRounding",

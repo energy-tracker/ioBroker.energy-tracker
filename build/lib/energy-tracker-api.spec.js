@@ -55,8 +55,7 @@ describe("EnergyTrackerApi", () => {
     const device = {
       deviceId: "abc123",
       sourceState: "test.state",
-      allowRounding: false,
-      sendIntervalHours: 1
+      allowRounding: false
     };
     adapterMock.getForeignStateAsync.resolves({
       val: 123.456,
@@ -78,8 +77,7 @@ describe("EnergyTrackerApi", () => {
     const device = {
       deviceId: "round1",
       sourceState: "round.state",
-      allowRounding: true,
-      sendIntervalHours: 1
+      allowRounding: true
     };
     adapterMock.getForeignStateAsync.resolves({
       val: 123.789,
@@ -95,8 +93,7 @@ describe("EnergyTrackerApi", () => {
     const device = {
       deviceId: "invalid1",
       sourceState: "missing.state",
-      allowRounding: false,
-      sendIntervalHours: 1
+      allowRounding: false
     };
     adapterMock.getForeignStateAsync.resolves({
       val: "not-a-number",
@@ -113,8 +110,7 @@ describe("EnergyTrackerApi", () => {
     const device = {
       deviceId: "fail400",
       sourceState: "error.state",
-      allowRounding: false,
-      sendIntervalHours: 1
+      allowRounding: false
     };
     adapterMock.getForeignStateAsync.resolves({
       val: 1,

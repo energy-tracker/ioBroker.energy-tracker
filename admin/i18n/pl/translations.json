@@ -2,7 +2,6 @@
   "labelBearerToken": "Token osobisty",
   "labelDeviceId": "Identyfikator urządzenia do śledzenia energii",
   "labelSourceState": "DataPoint ID (stan)",
-  "labelSendIntervalHours": "Interwał transmisji (w godzinach)",
   "labelAllowRounding": "Pozwól zaokrąglanie",
   "headerDevices": "Urządzenia",
   "infoIntro": "Najpierw utwórz osobisty token dostępu na https://www.energy-tracker.best-ios-apps.de. Następnie odzyskaj urządzenia standardowe, aby uzyskać identyfikatory urządzeń. Dokładną procedurę opisano w dokumentacji API."

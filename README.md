@@ -12,10 +12,14 @@ It periodically transfers values from configured ioBroker states using the publi
 
 ## Requirements
 
-- Create a personal access token at
-  👉 [https://www.energy-tracker.best-ios-apps.de](https://www.energy-tracker.best-ios-apps.de)
-- Obtain your standard device IDs via the public API
-  👉 [View API documentation](https://www.energy-tracker.best-ios-apps.de/)
+1. **Register an account:**  
+   👉 [Create your account](https://www.energy-tracker.best-ios-apps.de/en-US/register)
+
+2. **Create a personal access token** (login required)  
+   👉 [Generate token](https://www.energy-tracker.best-ios-apps.de/de/login?next=%2Faccount%2Faccess-token)
+
+3. **Get your device IDs from the API docs** (login required)  
+   👉 [API documentation](https://www.energy-tracker.best-ios-apps.de/de/login?next=%2Faccount%2Frest-api)
 
 ## Configuration
 
@@ -34,6 +38,10 @@ The following fields must be configured in the adapter:
 - Data is only **sent** – no readings are retrieved.
 
 ## Changelog
+
+### 0.2.0
+
+- Changed adapter type to 'schedule' to reflect intended usage. Fixed repository metadata and added missing GitHub test workflows.
 
 ### 0.1.3
 

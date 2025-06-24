@@ -1,10 +1,8 @@
 import * as utils from "@iobroker/adapter-core";
 import { EnergyTrackerApi } from "./lib/energy-tracker-api";
-import { DeviceScheduler } from "./lib/device-scheduler";
 
 class EnergyTracker extends utils.Adapter {
   private api!: EnergyTrackerApi;
-  private scheduler!: DeviceScheduler;
 
   constructor(options: Partial<utils.AdapterOptions> = {}) {
     super({
@@ -13,32 +11,33 @@ class EnergyTracker extends utils.Adapter {
     });
 
     this.on("ready", this.onReady.bind(this));
-    this.on("unload", this.onUnload.bind(this));
   }
 
   private async onReady(): Promise<void> {
     this.api = new EnergyTrackerApi(this);
-    this.scheduler = new DeviceScheduler(this, this.api);
 
     await this.setState("info.connection", { val: false, ack: true });
 
     if (!this.config.bearerToken) {
-      this.log.warn("Missing bearer token in adapter configuration – skipping adapter start.");
+      this.terminate("Missing bearer token in adapter configuration – skipping adapter start.");
       return;
     }
     if (!Array.isArray(this.config.devices) || this.config.devices.length === 0) {
-      this.log.warn("No devices configured in adapter settings – skipping adapter start.");
+      this.terminate("No devices configured in adapter settings – skipping adapter start.");
       return;
     }
 
-    this.scheduler.schedule(this.config.devices);
+    for (const device of this.config.devices) {
+      if (!device.deviceId || !device.sourceState) {
+        this.log.warn(`[${device.sourceState}] Device config incomplete – skipping.`);
+        continue;
+      }
+
+      void this.api.sendReading(device);
+    }
 
     await this.setState("info.connection", { val: true, ack: true });
-  }
-
-  private onUnload(callback: () => void): void {
-    this.scheduler.clear();
-    callback();
+    this.terminate("Terminating scheduled adapter instance.");
   }
 }
 

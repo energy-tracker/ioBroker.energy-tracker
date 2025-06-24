@@ -23,36 +23,35 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_energy_tracker_api = require("./lib/energy-tracker-api");
-var import_device_scheduler = require("./lib/device-scheduler");
 class EnergyTracker extends utils.Adapter {
   api;
-  scheduler;
   constructor(options = {}) {
     super({
       ...options,
       name: "energy-tracker"
     });
     this.on("ready", this.onReady.bind(this));
-    this.on("unload", this.onUnload.bind(this));
   }
   async onReady() {
     this.api = new import_energy_tracker_api.EnergyTrackerApi(this);
-    this.scheduler = new import_device_scheduler.DeviceScheduler(this, this.api);
     await this.setState("info.connection", { val: false, ack: true });
     if (!this.config.bearerToken) {
-      this.log.warn("Missing bearer token in adapter configuration \u2013 skipping adapter start.");
+      this.terminate("Missing bearer token in adapter configuration \u2013 skipping adapter start.");
       return;
     }
     if (!Array.isArray(this.config.devices) || this.config.devices.length === 0) {
-      this.log.warn("No devices configured in adapter settings \u2013 skipping adapter start.");
+      this.terminate("No devices configured in adapter settings \u2013 skipping adapter start.");
       return;
     }
-    this.scheduler.schedule(this.config.devices);
+    for (const device of this.config.devices) {
+      if (!device.deviceId || !device.sourceState) {
+        this.log.warn(`[${device.sourceState}] Device config incomplete \u2013 skipping.`);
+        continue;
+      }
+      void this.api.sendReading(device);
+    }
     await this.setState("info.connection", { val: true, ack: true });
-  }
-  onUnload(callback) {
-    this.scheduler.clear();
-    callback();
+    this.terminate("Terminating scheduled adapter instance.");
   }
 }
 if (require.main !== module) {
