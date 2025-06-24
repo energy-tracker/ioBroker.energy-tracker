@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energy-tracker",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "news": {
+      "0.2.4": {
+        "en": "Removed old news entries (fix W132 warning)",
+        "de": "Alte Nachrichteneinträge entfernt (Fix W132 Warnung)",
+        "ru": "Удаленные старые записи новостей (исправление W132 Предупреждение)",
+        "pt": "Removeu entradas de notícias antigas (corrigir aviso W132)",
+        "nl": "Old Nieuws Inzendingen verwijderd (Fix W132 WAARSCHUWING)",
+        "fr": "Suppression des anciennes entrées de nouvelles (Fix W132 AVERTISSEMENT)",
+        "it": "Rimosse vecchie voci di notizie (correggere W132 AVVERTENZA)",
+        "es": "Entradas de noticias antiguas eliminadas (FIJA W132 ADVERTENCIA)",
+        "pl": "Usunięte stare wpisy wiadomości (ustal ostrzeżenie W132)",
+        "uk": "Вилучено старі записи новин (виправити попередження W132)",
+        "zh-cn": "删除了旧新闻报道（修复W132警告）"
+      },
       "0.2.3": {
         "en": "Reduced build size",
         "de": "Reduzierte Build -Größe",
@@ -80,32 +93,6 @@
         "pl": "Naprawiono metadane repozytorium i wykonałem wymagane niewielkie korekty",
         "uk": "Фіксовані метадані сховища та виконані необхідні незначні корективи",
         "zh-cn": "固定存储库元数据并进行了较小的调整"
-      },
-      "0.1.1": {
-        "en": "Fixed repository metadata",
-        "de": "Metadaten des Repositories korrigiert",
-        "ru": "Фиксированные метаданные репозитория",
-        "pt": "Metadados do repositório fixo",
-        "nl": "Vaste repository metagegevens",
-        "fr": "Métadonnées du référentiel fixe",
-        "it": "Metadati del repository fissi",
-        "es": "Metadatos de repositorio fijos",
-        "pl": "Naprawiono metadane repozytorium",
-        "uk": "Фіксовані метадані сховища",
-        "zh-cn": "固定存储库元数据"
-      },
-      "0.1.0": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Первоначальный выпуск",
-        "pt": "liberação inicial",
-        "nl": "eerste release",
-        "fr": "libération initiale",
-        "it": "Rilascio iniziale",
-        "es": "lanzamiento inicial",
-        "pl": "Początkowe wydanie",
-        "uk": "Початковий випуск",
-        "zh-cn": "初始版本"
       }
     },
     "titleLang": {

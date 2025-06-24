@@ -39,6 +39,10 @@ The following fields must be configured in the adapter:
 
 ## Changelog
 
+### 0.2.4
+
+- Removed old news entries (fix W132 warning)
+
 ### 0.2.3
 
 - Reduced build size
