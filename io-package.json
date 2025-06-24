@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energy-tracker",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "news": {
+      "0.2.3": {
+        "en": "Reduced build size",
+        "de": "Reduzierte Build -Größe",
+        "ru": "Увеличенный размер сборки",
+        "pt": "Tamanho de construção reduzido",
+        "nl": "Verminderde bouwgrootte",
+        "fr": "Taille de construction réduite",
+        "it": "Dimensione della build ridotta",
+        "es": "Tamaño de construcción reducido",
+        "pl": "Zmniejszony rozmiar kompilacji",
+        "uk": "Зменшений розмір збірки",
+        "zh-cn": "减小构建尺寸"
+      },
       "0.2.2": {
         "en": "Improved support for integration testing",
         "de": "Verbesserte Unterstützung für Integrationstests",

@@ -39,6 +39,10 @@ The following fields must be configured in the adapter:
 
 ## Changelog
 
+### 0.2.3
+
+- Reduced build size
+
 ### 0.2.2
 
 - Improved support for integration testing

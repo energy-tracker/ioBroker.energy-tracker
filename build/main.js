@@ -1,62 +1,64 @@
 "use strict";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var utils = __toESM(require("@iobroker/adapter-core"));
-var import_energy_tracker_api = require("./lib/energy-tracker-api");
+Object.defineProperty(exports, "__esModule", { value: true });
+const utils = __importStar(require("@iobroker/adapter-core"));
+const energy_tracker_api_1 = require("./lib/energy-tracker-api");
 class EnergyTracker extends utils.Adapter {
-  api;
-  constructor(options = {}) {
-    super({
-      ...options,
-      name: "energy-tracker"
-    });
-    this.on("ready", this.onReady.bind(this));
-  }
-  async onReady() {
-    this.api = new import_energy_tracker_api.EnergyTrackerApi(this);
-    await this.setState("info.connection", { val: false, ack: true });
-    if (!this.config.bearerToken) {
-      this.terminate("Missing bearer token in adapter configuration \u2013 skipping adapter start.");
-      return;
+    api;
+    constructor(options = {}) {
+        super({
+            ...options,
+            name: "energy-tracker",
+        });
+        this.on("ready", this.onReady.bind(this));
     }
-    if (!Array.isArray(this.config.devices) || this.config.devices.length === 0) {
-      this.terminate("No devices configured in adapter settings \u2013 skipping adapter start.");
-      return;
+    async onReady() {
+        this.api = new energy_tracker_api_1.EnergyTrackerApi(this);
+        await this.setState("info.connection", { val: false, ack: true });
+        if (!this.config.bearerToken) {
+            this.terminate("Missing bearer token in adapter configuration – skipping adapter start.");
+            return;
+        }
+        if (!Array.isArray(this.config.devices) || this.config.devices.length === 0) {
+            this.terminate("No devices configured in adapter settings – skipping adapter start.");
+            return;
+        }
+        for (const device of this.config.devices) {
+            if (!device.deviceId || !device.sourceState) {
+                this.log.warn(`[${device.sourceState}] Device config incomplete – skipping.`);
+                continue;
+            }
+            void this.api.sendReading(device);
+        }
+        await this.setState("info.connection", { val: true, ack: true });
+        this.terminate("Terminating scheduled adapter instance.");
     }
-    for (const device of this.config.devices) {
-      if (!device.deviceId || !device.sourceState) {
-        this.log.warn(`[${device.sourceState}] Device config incomplete \u2013 skipping.`);
-        continue;
-      }
-      void this.api.sendReading(device);
-    }
-    await this.setState("info.connection", { val: true, ack: true });
-    this.terminate("Terminating scheduled adapter instance.");
-  }
 }
 if (require.main !== module) {
-  module.exports = (options) => new EnergyTracker(options);
-} else {
-  (() => new EnergyTracker())();
+    module.exports = (options) => new EnergyTracker(options);
 }
-//# sourceMappingURL=main.js.map
+else {
+    (() => new EnergyTracker())();
+}
