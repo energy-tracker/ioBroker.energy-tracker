@@ -1,0 +1,9 @@
+{
+  "labelBearerToken": "Jeton d'accès personnel",
+  "labelDeviceId": "ID de dispositif de tracker d'énergie",
+  "labelSourceState": "ID de point de données (état)",
+  "labelSendIntervalHours": "Intervalle de transmission (en heures)",
+  "labelAllowRounding": "Autoriser l'arrondi",
+  "headerDevices": "Dispositifs",
+  "infoIntro": "Tout d'abord, créez un jeton d'accès personnel sur https://www.energy-tracker.best-ios-apps.de. Ensuite, récupérez vos appareils standard pour obtenir leurs ID d'appareil. La procédure exacte est décrite dans la documentation de l'API."
+}

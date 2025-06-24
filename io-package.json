@@ -1,20 +1,73 @@
 {
   "common": {
     "name": "energy-tracker",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "news": {
+      "0.1.2": {
+        "en": "Fixed repository metadata and performed required minor adjustments",
+        "de": "Metadaten des Repositories korrigiert und kleinere erforderliche Anpassungen vorgenommen",
+        "ru": "Фиксированные метаданные репозитория и выполненные необходимые незначительные корректировки",
+        "pt": "Metadados do repositório corrigido e executados pequenos ajustes necessários para pequenos ajustes",
+        "nl": "Vaste repository -metagegevens en uitgevoerd vereiste kleine aanpassingen",
+        "fr": "Les métadonnées du référentiel fixe et les ajustements mineurs requis requis",
+        "it": "Metadati del repository fissi ed eseguito richiesti regolamenti minori",
+        "es": "Se corrigieron los metadatos del repositorio y realizó ajustes menores requeridos",
+        "pl": "Naprawiono metadane repozytorium i wykonałem wymagane niewielkie korekty",
+        "uk": "Фіксовані метадані сховища та виконані необхідні незначні корективи",
+        "zh-cn": "固定存储库元数据并进行了较小的调整"
+      },
+      "0.1.1": {
+        "en": "Fixed repository metadata",
+        "de": "Metadaten des Repositories korrigiert",
+        "ru": "Фиксированные метаданные репозитория",
+        "pt": "Metadados do repositório fixo",
+        "nl": "Vaste repository metagegevens",
+        "fr": "Métadonnées du référentiel fixe",
+        "it": "Metadati del repository fissi",
+        "es": "Metadatos de repositorio fijos",
+        "pl": "Naprawiono metadane repozytorium",
+        "uk": "Фіксовані метадані сховища",
+        "zh-cn": "固定存储库元数据"
+      },
       "0.1.0": {
         "en": "initial release",
-        "de": "Erstveröffentlichung"
+        "de": "Erstveröffentlichung",
+        "ru": "Первоначальный выпуск",
+        "pt": "liberação inicial",
+        "nl": "eerste release",
+        "fr": "libération initiale",
+        "it": "Rilascio iniziale",
+        "es": "lanzamiento inicial",
+        "pl": "Początkowe wydanie",
+        "uk": "Початковий випуск",
+        "zh-cn": "初始版本"
       }
     },
     "titleLang": {
       "en": "Energy Tracker",
-      "de": "Energy Tracker"
+      "de": "Energy Tracker",
+      "ru": "Энергетический трекер",
+      "pt": "Rastreador de energia",
+      "nl": "Energy Tracker",
+      "fr": "Tracker d'énergie",
+      "it": "Tracker energetico",
+      "es": "Rastreador de energía",
+      "pl": "Tracker energetyczny",
+      "uk": "Енергетичний трекер",
+      "zh-cn": "能量跟踪器"
     },
     "desc": {
       "en": "Adapter for sending meter readings to the Energy Tracker platform.",
-      "de": "Adapter zum Senden von Messwerten an die Energy Tracker Plattform."
+      "de": "Adapter zum Senden von Messwerten an die Energy Tracker Plattform.",
+      "ru": "Адаптер для отправки показаний счетчиков на платформу трекера.",
+      "pt": "Adaptador para enviar leituras do medidor para a plataforma de rastreador de energia.",
+      "nl": "Adapter voor het verzenden van meter meters naar het Energy Tracker -platform.",
+      "fr": "Adaptateur pour l'envoi de lectures des compteurs à la plate-forme d'énergie.",
+      "it": "Adattatore per l'invio di letture del contatore alla piattaforma Energy Tracker.",
+      "es": "Adaptador para enviar lecturas del medidor a la plataforma de rastreador de energía.",
+      "pl": "Adapter do wysyłania odczytów liczników do platformy Energy Tracker.",
+      "uk": "Адаптер для надсилання показань лічильника на платформу Tracker Energy.",
+      "zh-cn": "用于将仪表读数发送到能量跟踪器平台的适配器。"
     },
     "authors": [
       {
@@ -55,7 +108,7 @@
     ],
     "globalDependencies": [
       {
-        "admin": ">=7.0.0"
+        "admin": ">=7.4.10"
       }
     ]
   },

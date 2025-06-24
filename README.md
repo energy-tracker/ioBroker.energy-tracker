@@ -35,10 +35,22 @@ The following fields must be configured in the adapter:
 
 ## Changelog
 
+### 0.1.2
+
+- Fixed repository metadata and performed required minor adjustments
+
+### 0.1.1
+
+- Fixed repository metadata
+
 ### 0.1.0
 
 - Initial version with full Admin UI configuration
 - Supports multiple devices and configurable intervals
+
+## Copyright
+
+Copyright (c) 2025 energy-tracker support@best-ios-apps.de
 
 ## License
 

@@ -23,10 +23,11 @@ class EnergyTracker extends utils.Adapter {
     await this.setState("info.connection", { val: false, ack: true });
 
     if (!this.config.bearerToken) {
-      this.log.warn("Missing bearer token in adapter configuration.");
+      this.log.warn("Missing bearer token in adapter configuration – skipping adapter start.");
+      return;
     }
     if (!Array.isArray(this.config.devices) || this.config.devices.length === 0) {
-      this.log.warn("No devices configured in adapter settings.");
+      this.log.warn("No devices configured in adapter settings – skipping adapter start.");
       return;
     }
 

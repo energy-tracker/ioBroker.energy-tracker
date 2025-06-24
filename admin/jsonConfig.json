@@ -12,12 +12,18 @@
       "label": "labelBearerToken",
       "encrypted": true,
       "allowSaveWithError": false,
-      "newLine": true
+      "newLine": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 6
     },
     "devices": {
       "type": "table",
       "label": "headerDevices",
       "uniqueColumns": ["deviceId"],
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
       "items": [
         {
           "type": "text",
