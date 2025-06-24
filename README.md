@@ -39,6 +39,10 @@ The following fields must be configured in the adapter:
 
 ## Changelog
 
+### 0.2.1
+
+- Added default schedule configuration for scheduled adapter mode
+
 ### 0.2.0
 
 - Changed adapter type to 'schedule' to reflect intended usage. Fixed repository metadata and added missing GitHub test workflows.

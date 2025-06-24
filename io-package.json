@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energy-tracker",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "news": {
+      "0.2.1": {
+        "en": "Added default schedule configuration for scheduled adapter mode",
+        "de": "Die Konfiguration des Standardplans für den geplanten Adaptermodus hinzugefügt",
+        "ru": "Добавлена ​​конфигурация графика по умолчанию для запланированного режима адаптера",
+        "pt": "Configuração de programação padrão adicionada para o modo de adaptador programado",
+        "nl": "Standaardschema -configuratie toegevoegd voor de geplande adaptermodus",
+        "fr": "Ajout de la configuration du calendrier par défaut pour le mode adaptateur planifié",
+        "it": "Aggiunta configurazione di pianificazione predefinita per la modalità adattatore pianificata",
+        "es": "Se agregó la configuración de programación predeterminada para el modo de adaptador programado",
+        "pl": "Dodano domyślną konfigurację harmonogramu dla zaplanowanego trybu adaptera",
+        "uk": "Додана конфігурація розкладу за замовчуванням для режиму запланованого адаптера",
+        "zh-cn": "为计划适配器模式添加了默认计划配置"
+      },
       "0.2.0": {
         "en": "Changed adapter type to 'schedule' to reflect intended usage. Fixed repository metadata and added missing GitHub test workflows.",
         "de": "Ändern des Adaptertyps in \"Zeitplan\", um die beabsichtigte Nutzung widerzuspiegeln. Repository -Metadaten behoben und fehlende GitHub -Test -Workflows hinzugefügt.",
@@ -113,6 +126,7 @@
     "loglevel": "info",
     "tier": 3,
     "mode": "schedule",
+    "schedule": "0 0 * * 0",
     "type": "iot-systems",
     "compact": true,
     "connectionType": "cloud",
