@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "energy-tracker",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "news": {
       "0.1.0": {
         "en": "initial release",
@@ -41,7 +41,7 @@
     "loglevel": "info",
     "tier": 3,
     "mode": "daemon",
-    "type": "energy",
+    "type": "iot-systems",
     "compact": true,
     "connectionType": "cloud",
     "dataSource": "poll",

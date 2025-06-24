@@ -1,6 +1,6 @@
 {
   "name": "iobroker.energy-tracker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Adapter for sending meter readings with the Energy Tracker platform.",
   "author": {
     "name": "energy-tracker",
@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:energy-tracker/ioBroker.energy-tracker.git"
+    "url": "https://github.com/energy-tracker/ioBroker.energy-tracker.git"
   },
   "engines": {
     "node": ">= 20"
