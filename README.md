@@ -39,6 +39,10 @@ The following fields must be configured in the adapter:
 
 ## Changelog
 
+### 0.2.2
+
+- Improved support for integration testing
+
 ### 0.2.1
 
 - Added default schedule configuration for scheduled adapter mode

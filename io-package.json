@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energy-tracker",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "news": {
+      "0.2.2": {
+        "en": "Improved support for integration testing",
+        "de": "Verbesserte Unterstützung für Integrationstests",
+        "ru": "Улучшенная поддержка интеграционного тестирования",
+        "pt": "Suporte aprimorado para testes de integração",
+        "nl": "Verbeterde ondersteuning voor integratietesten",
+        "fr": "Amélioration du support pour les tests d'intégration",
+        "it": "Supporto migliorato per i test di integrazione",
+        "es": "Soporte mejorado para las pruebas de integración",
+        "pl": "Ulepszone wsparcie testów integracji",
+        "uk": "Покращена підтримка тестування інтеграції",
+        "zh-cn": "改善对集成测试的支持"
+      },
       "0.2.1": {
         "en": "Added default schedule configuration for scheduled adapter mode",
         "de": "Die Konfiguration des Standardplans für den geplanten Adaptermodus hinzugefügt",
