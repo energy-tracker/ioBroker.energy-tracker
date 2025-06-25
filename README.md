@@ -39,6 +39,10 @@ The following fields must be configured in the adapter:
 
 ## Changelog
 
+### 0.2.5
+
+- Updated dependencies for testing and added Node.js v24 to adapter tests.
+
 ### 0.2.4
 
 - Removed old news entries (fix W132 warning)

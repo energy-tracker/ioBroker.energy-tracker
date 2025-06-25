@@ -10,21 +10,6 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   rules: {
     indent: "off",
-    "@typescript-eslint/indent": [
-      "error",
-      2,
-      {
-        SwitchCase: 1,
-      },
-    ],
-    quotes: [
-      "error",
-      "double",
-      {
-        avoidEscape: true,
-        allowTemplateLiterals: true,
-      },
-    ],
     "@typescript-eslint/no-parameter-properties": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-use-before-define": [

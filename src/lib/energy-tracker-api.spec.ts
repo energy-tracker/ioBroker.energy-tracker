@@ -3,6 +3,7 @@ import chai from "chai";
 import sinonChai from "sinon-chai";
 import sinon from "sinon";
 import axios from "axios";
+import { assert } from "chai";
 import { EnergyTrackerApi } from "./energy-tracker-api";
 
 chai.use(sinonChai);
@@ -53,7 +54,7 @@ describe("EnergyTrackerApi", () => {
     await api.sendReading(device);
 
     // Assert
-    expect(axiosPostStub.calledOnce).to.be.true;
+    assert.isTrue(axiosPostStub.calledOnce);
     const [url, body, config] = axiosPostStub.firstCall.args;
     expect(url).to.include("/v1/devices/abc123/meter-readings");
     expect(body).to.deep.equal({ value: 123.456 });
@@ -103,8 +104,8 @@ describe("EnergyTrackerApi", () => {
     await api.sendReading(device);
 
     // Assert
-    expect(adapterMock.log.warn).calledWithMatch("Invalid or missing state");
-    expect(axiosPostStub.called).to.be.false;
+    expect(adapterMock.log.warn).to.have.been.calledWithMatch("Invalid or missing state");
+    assert.isFalse(axiosPostStub.called);
   });
 
   it("should handle 400 Bad Request gracefully", async () => {
