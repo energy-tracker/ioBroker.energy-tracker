@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energy-tracker",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "news": {
+      "0.2.6": {
+        "en": "Added README note: schedule required in ioBroker.",
+        "de": "ReadMe Hinweis hinzugefügt: Der Zeitplan für IOBROKER.",
+        "ru": "Добавлено readme Примечание: расписание требуется в iobroker.",
+        "pt": "Adicionado ReadMe Nota: Cronograma necessário no IOBROKER.",
+        "nl": "README OPMERKING TOEVOEGD: Schema vereist in IOBROKER.",
+        "fr": "Ajout de ReadMe Remarque: Planification requise dans IOBROKER.",
+        "it": "Aggiunta ReadMe Nota: pianificazione richiesta in IoBroker.",
+        "es": "Nota de readMe agregada: Programa requerido en Iobroker.",
+        "pl": "Dodano Uwaga ReadMe: harmonogram wymagany w IOBRAKER.",
+        "uk": "Додано Readme Примітка: графік, необхідний в iobroker.",
+        "zh-cn": "添加了注册信息注：IOBROKR中需要的时间表。"
+      },
       "0.2.5": {
         "en": "Updated dependencies for testing and added Node.js v24 to adapter tests",
         "de": "Testabhängigkeiten aktualisiert und Node.js v24 zu den Adapter-Tests hinzugefügt.",
@@ -80,19 +93,6 @@
         "pl": "Zmieniony typ adaptera na „harmonogram”, aby odzwierciedlić zamierzone użycie. Naprawiono metadane repozytorium i dodane brakujące przepływy pracy testowej GitHub.",
         "uk": "Змінено тип адаптера на \"графік\", щоб відобразити призначене використання. Фіксовані метадані сховища та додали пропущені робочі процеси тестування Github.",
         "zh-cn": "将适配器类型更改为“时间表”，以反映预期的用法。修复了存储库元数据，并添加了缺少的GitHub测试工作流程。"
-      },
-      "0.1.3": {
-        "en": "Fixed repository metadata and performed required minor adjustments",
-        "de": "Metadaten des Repositories korrigiert und kleinere erforderliche Anpassungen vorgenommen",
-        "ru": "Фиксированные метаданные репозитория и выполненные необходимые незначительные корректировки",
-        "pt": "Metadados do repositório corrigido e executados pequenos ajustes necessários para pequenos ajustes",
-        "nl": "Vaste repository -metagegevens en uitgevoerd vereiste kleine aanpassingen",
-        "fr": "Les métadonnées du référentiel fixe et les ajustements mineurs requis requis",
-        "it": "Metadati del repository fissi ed eseguito richiesti regolamenti minori",
-        "es": "Se corrigieron los metadatos del repositorio y realizó ajustes menores requeridos",
-        "pl": "Naprawiono metadane repozytorium i wykonałem wymagane niewielkie korekty",
-        "uk": "Фіксовані метадані сховища та виконані необхідні незначні корективи",
-        "zh-cn": "固定存储库元数据并进行了较小的调整"
       }
     },
     "titleLang": {

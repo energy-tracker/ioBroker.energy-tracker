@@ -29,8 +29,10 @@ The following fields must be configured in the adapter:
 - **Device list** with:
   - `deviceId` (Energy Tracker device ID)
   - `sourceState` (ioBroker state that provides the reading)
-  - Transmission interval (in hours)
   - Enable rounding of values
+
+**Additionally, you must create a schedule in ioBroker to trigger the adapter at regular intervals.**  
+Without a schedule, the adapter will not fetch or transmit any data automatically.
 
 ## Security
 
@@ -38,6 +40,10 @@ The following fields must be configured in the adapter:
 - Data is only **sent** – no readings are retrieved.
 
 ## Changelog
+
+### 0.2.6
+
+- Added README note: schedule required in ioBroker.
 
 ### 0.2.5
 
