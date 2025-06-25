@@ -1,8 +1,8 @@
 {
-  "labelBearerToken": "Persoonlijke toegang token",
-  "labelDeviceId": "ENERGY TRACKER Device ID",
-  "labelSourceState": "Datapoint ID (status)",
-  "labelAllowRounding": "Ronding toestaan",
-  "headerDevices": "Apparaten",
-  "infoIntro": "Maak eerst een persoonlijke toegang token op https://www.energy-tracker.best-ios-apps.de. Haal vervolgens uw standaardapparaten op om hun apparaat -ID's te krijgen. De exacte procedure wordt beschreven in de API -documentatie."
+    "labelBearerToken": "Persoonlijke toegang token",
+    "labelDeviceId": "ENERGY TRACKER Device ID",
+    "labelSourceState": "Datapoint ID (status)",
+    "labelAllowRounding": "Ronding toestaan",
+    "headerDevices": "Apparaten",
+    "infoIntro": "Maak eerst een persoonlijke toegang token op https://www.energy-tracker.best-ios-apps.de. Haal vervolgens uw standaardapparaten op om hun apparaat -ID's te krijgen. De exacte procedure wordt beschreven in de API -documentatie."
 }

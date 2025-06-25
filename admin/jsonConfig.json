@@ -1,61 +1,61 @@
 {
-  "i18n": true,
-  "type": "panel",
-  "items": {
-    "infoText": {
-      "type": "staticText",
-      "label": "infoIntro",
-      "newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 12,
-      "lg": 12,
-      "xl": 12
-    },
-    "bearerToken": {
-      "type": "password",
-      "label": "labelBearerToken",
-      "encrypted": true,
-      "allowSaveWithError": false,
-      "newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 12,
-      "lg": 6,
-      "xl": 6
-    },
-    "devices": {
-      "type": "table",
-      "label": "headerDevices",
-      "uniqueColumns": ["deviceId"],
-      "xs": 12,
-      "sm": 12,
-      "md": 12,
-      "lg": 12,
-      "xl": 12,
-      "items": [
-        {
-          "type": "text",
-          "attr": "deviceId",
-          "label": "labelDeviceId",
-          "allowEmpty": false,
-          "trim": true
+    "i18n": true,
+    "type": "panel",
+    "items": {
+        "infoText": {
+            "type": "staticText",
+            "label": "infoIntro",
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
-        {
-          "type": "text",
-          "attr": "sourceState",
-          "label": "labelSourceState",
-          "allowEmpty": false,
-          "trim": true
+        "bearerToken": {
+            "type": "password",
+            "label": "labelBearerToken",
+            "encrypted": true,
+            "allowSaveWithError": false,
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 6,
+            "xl": 6
         },
-        {
-          "type": "checkbox",
-          "attr": "allowRounding",
-          "label": "labelAllowRounding",
-          "default": true
+        "devices": {
+            "type": "table",
+            "label": "headerDevices",
+            "uniqueColumns": ["deviceId"],
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12,
+            "items": [
+                {
+                    "type": "text",
+                    "attr": "deviceId",
+                    "label": "labelDeviceId",
+                    "allowEmpty": false,
+                    "trim": true
+                },
+                {
+                    "type": "text",
+                    "attr": "sourceState",
+                    "label": "labelSourceState",
+                    "allowEmpty": false,
+                    "trim": true
+                },
+                {
+                    "type": "checkbox",
+                    "attr": "allowRounding",
+                    "label": "labelAllowRounding",
+                    "default": true
+                }
+            ],
+            "newLine": true
         }
-      ],
-      "newLine": true
     }
-  }
 }

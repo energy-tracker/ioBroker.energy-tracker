@@ -27,9 +27,9 @@ The following fields must be configured in the adapter:
 
 - **Personal Access Token**
 - **Device list** with:
-  - `deviceId` (Energy Tracker device ID)
-  - `sourceState` (ioBroker state that provides the reading)
-  - Enable rounding of values
+    - `deviceId` (Energy Tracker device ID)
+    - `sourceState` (ioBroker state that provides the reading)
+    - Enable rounding of values
 
 **Additionally, you must create a schedule in ioBroker to trigger the adapter at regular intervals.**  
 Without a schedule, the adapter will not fetch or transmit any data automatically.
@@ -40,6 +40,10 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 - Data is only **sent** – no readings are retrieved.
 
 ## Changelog
+
+### 0.2.7
+
+- Updated ESLint to v9, fixed repository URL in package.json, and improved test coverage.
 
 ### 0.2.6
 

@@ -1,8 +1,8 @@
 {
-  "labelBearerToken": "个人访问令牌",
-  "labelDeviceId": "能量跟踪器设备ID",
-  "labelSourceState": "数据点ID（状态）",
-  "labelAllowRounding": "允许舍入",
-  "headerDevices": "设备",
-  "infoIntro": "首先，在https://www.energy-tracker.best-ios-apps.de上创建个人访问令牌。然后，检索标准设备以获取其设备ID。确切的过程在API文档中描述。"
+    "labelBearerToken": "个人访问令牌",
+    "labelDeviceId": "能量跟踪器设备ID",
+    "labelSourceState": "数据点ID（状态）",
+    "labelAllowRounding": "允许舍入",
+    "headerDevices": "设备",
+    "infoIntro": "首先，在https://www.energy-tracker.best-ios-apps.de上创建个人访问令牌。然后，检索标准设备以获取其设备ID。确切的过程在API文档中描述。"
 }

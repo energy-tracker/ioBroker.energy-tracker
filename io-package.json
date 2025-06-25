@@ -1,197 +1,197 @@
 {
-  "common": {
-    "name": "energy-tracker",
-    "version": "0.2.6",
-    "news": {
-      "0.2.6": {
-        "en": "Added README note: schedule required in ioBroker.",
-        "de": "ReadMe Hinweis hinzugefügt: Der Zeitplan für IOBROKER.",
-        "ru": "Добавлено readme Примечание: расписание требуется в iobroker.",
-        "pt": "Adicionado ReadMe Nota: Cronograma necessário no IOBROKER.",
-        "nl": "README OPMERKING TOEVOEGD: Schema vereist in IOBROKER.",
-        "fr": "Ajout de ReadMe Remarque: Planification requise dans IOBROKER.",
-        "it": "Aggiunta ReadMe Nota: pianificazione richiesta in IoBroker.",
-        "es": "Nota de readMe agregada: Programa requerido en Iobroker.",
-        "pl": "Dodano Uwaga ReadMe: harmonogram wymagany w IOBRAKER.",
-        "uk": "Додано Readme Примітка: графік, необхідний в iobroker.",
-        "zh-cn": "添加了注册信息注：IOBROKR中需要的时间表。"
-      },
-      "0.2.5": {
-        "en": "Updated dependencies for testing and added Node.js v24 to adapter tests",
-        "de": "Testabhängigkeiten aktualisiert und Node.js v24 zu den Adapter-Tests hinzugefügt.",
-        "ru": "Обновленные зависимости для тестирования и добавленного Node.js V24 к адаптерным тестам",
-        "pt": "Dependências atualizadas para teste e adicionado node.js v24 aos testes de adaptador",
-        "nl": "Bijgewerkte afhankelijkheden voor testen en toegevoegde node.js v24 aan adaptertests",
-        "fr": "Dépendances mises à jour pour les tests et ajouté Node.js V24 aux tests d'adaptateur",
-        "it": "Dipendenze aggiornate per i test e aggiunto nodo.js v24 ai test dell'adattatore",
-        "es": "Dependencias actualizadas para pruebas y se agregan Node.js V24 a las pruebas de adaptador",
-        "pl": "Zaktualizowano zależności testowania i dodane node.js v24 do testów adapterów",
-        "uk": "Оновлені залежності для тестування та додавання Node.js v24 до тестів на адаптер",
-        "zh-cn": "用于测试和添加Node.js V24的更新依赖项到适配器测试"
-      },
-      "0.2.4": {
-        "en": "Removed old news entries (fix W132 warning)",
-        "de": "Alte Nachrichteneinträge entfernt (Fix W132 Warnung)",
-        "ru": "Удаленные старые записи новостей (исправление W132 Предупреждение)",
-        "pt": "Removeu entradas de notícias antigas (corrigir aviso W132)",
-        "nl": "Old Nieuws Inzendingen verwijderd (Fix W132 WAARSCHUWING)",
-        "fr": "Suppression des anciennes entrées de nouvelles (Fix W132 AVERTISSEMENT)",
-        "it": "Rimosse vecchie voci di notizie (correggere W132 AVVERTENZA)",
-        "es": "Entradas de noticias antiguas eliminadas (FIJA W132 ADVERTENCIA)",
-        "pl": "Usunięte stare wpisy wiadomości (ustal ostrzeżenie W132)",
-        "uk": "Вилучено старі записи новин (виправити попередження W132)",
-        "zh-cn": "删除了旧新闻报道（修复W132警告）"
-      },
-      "0.2.3": {
-        "en": "Reduced build size",
-        "de": "Reduzierte Build -Größe",
-        "ru": "Увеличенный размер сборки",
-        "pt": "Tamanho de construção reduzido",
-        "nl": "Verminderde bouwgrootte",
-        "fr": "Taille de construction réduite",
-        "it": "Dimensione della build ridotta",
-        "es": "Tamaño de construcción reducido",
-        "pl": "Zmniejszony rozmiar kompilacji",
-        "uk": "Зменшений розмір збірки",
-        "zh-cn": "减小构建尺寸"
-      },
-      "0.2.2": {
-        "en": "Improved support for integration testing",
-        "de": "Verbesserte Unterstützung für Integrationstests",
-        "ru": "Улучшенная поддержка интеграционного тестирования",
-        "pt": "Suporte aprimorado para testes de integração",
-        "nl": "Verbeterde ondersteuning voor integratietesten",
-        "fr": "Amélioration du support pour les tests d'intégration",
-        "it": "Supporto migliorato per i test di integrazione",
-        "es": "Soporte mejorado para las pruebas de integración",
-        "pl": "Ulepszone wsparcie testów integracji",
-        "uk": "Покращена підтримка тестування інтеграції",
-        "zh-cn": "改善对集成测试的支持"
-      },
-      "0.2.1": {
-        "en": "Added default schedule configuration for scheduled adapter mode",
-        "de": "Die Konfiguration des Standardplans für den geplanten Adaptermodus hinzugefügt",
-        "ru": "Добавлена ​​конфигурация графика по умолчанию для запланированного режима адаптера",
-        "pt": "Configuração de programação padrão adicionada para o modo de adaptador programado",
-        "nl": "Standaardschema -configuratie toegevoegd voor de geplande adaptermodus",
-        "fr": "Ajout de la configuration du calendrier par défaut pour le mode adaptateur planifié",
-        "it": "Aggiunta configurazione di pianificazione predefinita per la modalità adattatore pianificata",
-        "es": "Se agregó la configuración de programación predeterminada para el modo de adaptador programado",
-        "pl": "Dodano domyślną konfigurację harmonogramu dla zaplanowanego trybu adaptera",
-        "uk": "Додана конфігурація розкладу за замовчуванням для режиму запланованого адаптера",
-        "zh-cn": "为计划适配器模式添加了默认计划配置"
-      },
-      "0.2.0": {
-        "en": "Changed adapter type to 'schedule' to reflect intended usage. Fixed repository metadata and added missing GitHub test workflows.",
-        "de": "Ändern des Adaptertyps in \"Zeitplan\", um die beabsichtigte Nutzung widerzuspiegeln. Repository -Metadaten behoben und fehlende GitHub -Test -Workflows hinzugefügt.",
-        "ru": "Изменен тип адаптера на «расписание», чтобы отразить предполагаемое использование. Фиксированные метаданные репозитория и добавлены пропущенные тестовые процессы GitHub.",
-        "pt": "Tipo de adaptador alterado para 'cronograma' para refletir o uso pretendido. Metadados do repositório corrigido e adicionados fluxos de trabalho de teste do GitHub ausentes.",
-        "nl": "Type adapter gewijzigd in 'planning' om het beoogde gebruik weer te geven. Vaste repository -metagegevens en toegevoegde workflows van de GitHub -test toegevoegd.",
-        "fr": "Type d'adaptateur modifié en «planification» pour refléter l'utilisation prévue. Correction des métadonnées du référentiel et ajoutant des workflows de test GitHub manquants.",
-        "it": "Tipo di adattatore modificato in \"programma\" per riflettere l'uso previsto. Risolto i metadati del repository e aggiunti flussi di test di test GitHub mancanti.",
-        "es": "Se cambió el tipo de adaptador a 'programar' para reflejar el uso previsto. Se corrigieron metadatos del repositorio y se agregaron flujos de trabajo de prueba de GitHub.",
-        "pl": "Zmieniony typ adaptera na „harmonogram”, aby odzwierciedlić zamierzone użycie. Naprawiono metadane repozytorium i dodane brakujące przepływy pracy testowej GitHub.",
-        "uk": "Змінено тип адаптера на \"графік\", щоб відобразити призначене використання. Фіксовані метадані сховища та додали пропущені робочі процеси тестування Github.",
-        "zh-cn": "将适配器类型更改为“时间表”，以反映预期的用法。修复了存储库元数据，并添加了缺少的GitHub测试工作流程。"
-      }
+    "common": {
+        "name": "energy-tracker",
+        "version": "0.2.7",
+        "news": {
+            "0.2.7": {
+                "en": "Updated ESLint to v9, fixed repository URL in package.json, and improved test coverage.",
+                "de": "Aktualisiert ESLINT auf V9, repository -URL in package.json und verbesserte Testabdeckung.",
+                "ru": "Обновлено Eslint to V9, фиксированный URL -адрес репозитория в Package.json и улучшенное тестовое покрытие.",
+                "pt": "Eslint atualizado para V9, URL do repositório fixo no package.json e cobertura de teste aprimorada.",
+                "nl": "Bijgewerkte Eslint naar V9, vaste repository -URL in pakket.json en verbeterde testdekking.",
+                "fr": "ESLINT MISE À JOUR vers V9, fixe URL du référentiel dans package.json et amélioration de la couverture de test.",
+                "it": "ESLINT aggiornato a V9, URL del repository fisso in pacchetto.json e copertura di test migliorata.",
+                "es": "ESLINT actualizado a V9, URL de repositorio fijo en paquete.json y cobertura de prueba mejorada.",
+                "pl": "Zaktualizowano ESLINT do V9, naprawiono adres URL repozytorium w pakiet.json i ulepszone pokrycie testowe.",
+                "uk": "Оновлений ESLINT до V9, фіксовану URL -адресу сховища в Package.json та покращене тестове покриття.",
+                "zh-cn": "将ESLINT更新为V9，固定了package.json中的存储库URL，并改进了测试覆盖范围。"
+            },
+            "0.2.6": {
+                "en": "Added README note: schedule required in ioBroker.",
+                "de": "ReadMe Hinweis hinzugefügt: Der Zeitplan für IOBROKER.",
+                "ru": "Добавлено readme Примечание: расписание требуется в iobroker.",
+                "pt": "Adicionado ReadMe Nota: Cronograma necessário no IOBROKER.",
+                "nl": "README OPMERKING TOEVOEGD: Schema vereist in IOBROKER.",
+                "fr": "Ajout de ReadMe Remarque: Planification requise dans IOBROKER.",
+                "it": "Aggiunta ReadMe Nota: pianificazione richiesta in IoBroker.",
+                "es": "Nota de readMe agregada: Programa requerido en Iobroker.",
+                "pl": "Dodano Uwaga ReadMe: harmonogram wymagany w IOBRAKER.",
+                "uk": "Додано Readme Примітка: графік, необхідний в iobroker.",
+                "zh-cn": "添加了注册信息注：IOBROKR中需要的时间表。"
+            },
+            "0.2.5": {
+                "en": "Updated dependencies for testing and added Node.js v24 to adapter tests",
+                "de": "Testabhängigkeiten aktualisiert und Node.js v24 zu den Adapter-Tests hinzugefügt.",
+                "ru": "Обновленные зависимости для тестирования и добавленного Node.js V24 к адаптерным тестам",
+                "pt": "Dependências atualizadas para teste e adicionado node.js v24 aos testes de adaptador",
+                "nl": "Bijgewerkte afhankelijkheden voor testen en toegevoegde node.js v24 aan adaptertests",
+                "fr": "Dépendances mises à jour pour les tests et ajouté Node.js V24 aux tests d'adaptateur",
+                "it": "Dipendenze aggiornate per i test e aggiunto nodo.js v24 ai test dell'adattatore",
+                "es": "Dependencias actualizadas para pruebas y se agregan Node.js V24 a las pruebas de adaptador",
+                "pl": "Zaktualizowano zależności testowania i dodane node.js v24 do testów adapterów",
+                "uk": "Оновлені залежності для тестування та додавання Node.js v24 до тестів на адаптер",
+                "zh-cn": "用于测试和添加Node.js V24的更新依赖项到适配器测试"
+            },
+            "0.2.4": {
+                "en": "Removed old news entries (fix W132 warning)",
+                "de": "Alte Nachrichteneinträge entfernt (Fix W132 Warnung)",
+                "ru": "Удаленные старые записи новостей (исправление W132 Предупреждение)",
+                "pt": "Removeu entradas de notícias antigas (corrigir aviso W132)",
+                "nl": "Old Nieuws Inzendingen verwijderd (Fix W132 WAARSCHUWING)",
+                "fr": "Suppression des anciennes entrées de nouvelles (Fix W132 AVERTISSEMENT)",
+                "it": "Rimosse vecchie voci di notizie (correggere W132 AVVERTENZA)",
+                "es": "Entradas de noticias antiguas eliminadas (FIJA W132 ADVERTENCIA)",
+                "pl": "Usunięte stare wpisy wiadomości (ustal ostrzeżenie W132)",
+                "uk": "Вилучено старі записи новин (виправити попередження W132)",
+                "zh-cn": "删除了旧新闻报道（修复W132警告）"
+            },
+            "0.2.3": {
+                "en": "Reduced build size",
+                "de": "Reduzierte Build -Größe",
+                "ru": "Увеличенный размер сборки",
+                "pt": "Tamanho de construção reduzido",
+                "nl": "Verminderde bouwgrootte",
+                "fr": "Taille de construction réduite",
+                "it": "Dimensione della build ridotta",
+                "es": "Tamaño de construcción reducido",
+                "pl": "Zmniejszony rozmiar kompilacji",
+                "uk": "Зменшений розмір збірки",
+                "zh-cn": "减小构建尺寸"
+            },
+            "0.2.2": {
+                "en": "Improved support for integration testing",
+                "de": "Verbesserte Unterstützung für Integrationstests",
+                "ru": "Улучшенная поддержка интеграционного тестирования",
+                "pt": "Suporte aprimorado para testes de integração",
+                "nl": "Verbeterde ondersteuning voor integratietesten",
+                "fr": "Amélioration du support pour les tests d'intégration",
+                "it": "Supporto migliorato per i test di integrazione",
+                "es": "Soporte mejorado para las pruebas de integración",
+                "pl": "Ulepszone wsparcie testów integracji",
+                "uk": "Покращена підтримка тестування інтеграції",
+                "zh-cn": "改善对集成测试的支持"
+            },
+            "0.2.1": {
+                "en": "Added default schedule configuration for scheduled adapter mode",
+                "de": "Die Konfiguration des Standardplans für den geplanten Adaptermodus hinzugefügt",
+                "ru": "Добавлена ​​конфигурация графика по умолчанию для запланированного режима адаптера",
+                "pt": "Configuração de programação padrão adicionada para o modo de adaptador programado",
+                "nl": "Standaardschema -configuratie toegevoegd voor de geplande adaptermodus",
+                "fr": "Ajout de la configuration du calendrier par défaut pour le mode adaptateur planifié",
+                "it": "Aggiunta configurazione di pianificazione predefinita per la modalità adattatore pianificata",
+                "es": "Se agregó la configuración de programación predeterminada para el modo de adaptador programado",
+                "pl": "Dodano domyślną konfigurację harmonogramu dla zaplanowanego trybu adaptera",
+                "uk": "Додана конфігурація розкладу за замовчуванням для режиму запланованого адаптера",
+                "zh-cn": "为计划适配器模式添加了默认计划配置"
+            }
+        },
+        "titleLang": {
+            "en": "Energy Tracker",
+            "de": "Energy Tracker",
+            "ru": "Энергетический трекер",
+            "pt": "Rastreador de energia",
+            "nl": "Energy Tracker",
+            "fr": "Tracker d'énergie",
+            "it": "Tracker energetico",
+            "es": "Rastreador de energía",
+            "pl": "Tracker energetyczny",
+            "uk": "Енергетичний трекер",
+            "zh-cn": "能量跟踪器"
+        },
+        "desc": {
+            "en": "Adapter for sending meter readings to the Energy Tracker platform.",
+            "de": "Adapter zum Senden von Messwerten an die Energy Tracker Plattform.",
+            "ru": "Адаптер для отправки показаний счетчиков на платформу трекера.",
+            "pt": "Adaptador para enviar leituras do medidor para a plataforma de rastreador de energia.",
+            "nl": "Adapter voor het verzenden van meter meters naar het Energy Tracker -platform.",
+            "fr": "Adaptateur pour l'envoi de lectures des compteurs à la plate-forme d'énergie.",
+            "it": "Adattatore per l'invio di letture del contatore alla piattaforma Energy Tracker.",
+            "es": "Adaptador para enviar lecturas del medidor a la plataforma de rastreador de energía.",
+            "pl": "Adapter do wysyłania odczytów liczników do platformy Energy Tracker.",
+            "uk": "Адаптер для надсилання показань лічильника на платформу Tracker Energy.",
+            "zh-cn": "用于将仪表读数发送到能量跟踪器平台的适配器。"
+        },
+        "authors": [
+            {
+                "name": "Energy Tracker"
+            }
+        ],
+        "keywords": ["energy tracker", "meter readings", "power consumption", "rest api"],
+        "licenseInformation": {
+            "type": "free",
+            "license": "MIT"
+        },
+        "platform": "Javascript/Node.js",
+        "icon": "energy-tracker.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/energy-tracker/ioBroker.energy-tracker/main/admin/energy-tracker.png",
+        "readme": "https://github.com/energy-tracker/ioBroker.energy-tracker/blob/main/README.md",
+        "loglevel": "info",
+        "tier": 3,
+        "mode": "schedule",
+        "schedule": "0 0 * * 0",
+        "type": "iot-systems",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "poll",
+        "adminUI": {
+            "config": "json"
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=6.0.11"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=7.4.10"
+            }
+        ]
     },
-    "titleLang": {
-      "en": "Energy Tracker",
-      "de": "Energy Tracker",
-      "ru": "Энергетический трекер",
-      "pt": "Rastreador de energia",
-      "nl": "Energy Tracker",
-      "fr": "Tracker d'énergie",
-      "it": "Tracker energetico",
-      "es": "Rastreador de energía",
-      "pl": "Tracker energetyczny",
-      "uk": "Енергетичний трекер",
-      "zh-cn": "能量跟踪器"
+    "native": {
+        "bearerToken": "",
+        "devices": [
+            {
+                "deviceId": "",
+                "sourceState": "",
+                "allowRounding": true
+            }
+        ]
     },
-    "desc": {
-      "en": "Adapter for sending meter readings to the Energy Tracker platform.",
-      "de": "Adapter zum Senden von Messwerten an die Energy Tracker Plattform.",
-      "ru": "Адаптер для отправки показаний счетчиков на платформу трекера.",
-      "pt": "Adaptador para enviar leituras do medidor para a plataforma de rastreador de energia.",
-      "nl": "Adapter voor het verzenden van meter meters naar het Energy Tracker -platform.",
-      "fr": "Adaptateur pour l'envoi de lectures des compteurs à la plate-forme d'énergie.",
-      "it": "Adattatore per l'invio di letture del contatore alla piattaforma Energy Tracker.",
-      "es": "Adaptador para enviar lecturas del medidor a la plataforma de rastreador de energía.",
-      "pl": "Adapter do wysyłania odczytów liczników do platformy Energy Tracker.",
-      "uk": "Адаптер для надсилання показань лічильника на платформу Tracker Energy.",
-      "zh-cn": "用于将仪表读数发送到能量跟踪器平台的适配器。"
-    },
-    "authors": [
-      {
-        "name": "Energy Tracker"
-      }
-    ],
-    "keywords": ["energy tracker", "meter readings", "power consumption", "rest api"],
-    "licenseInformation": {
-      "type": "free",
-      "license": "MIT"
-    },
-    "platform": "Javascript/Node.js",
-    "icon": "energy-tracker.png",
-    "enabled": true,
-    "extIcon": "https://raw.githubusercontent.com/energy-tracker/ioBroker.energy-tracker/main/admin/energy-tracker.png",
-    "readme": "https://github.com/energy-tracker/ioBroker.energy-tracker/blob/main/README.md",
-    "loglevel": "info",
-    "tier": 3,
-    "mode": "schedule",
-    "schedule": "0 0 * * 0",
-    "type": "iot-systems",
-    "compact": true,
-    "connectionType": "cloud",
-    "dataSource": "poll",
-    "adminUI": {
-      "config": "json"
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=6.0.11"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=7.4.10"
-      }
+    "encryptedNative": ["bearerToken"],
+    "protectedNative": ["bearerToken"],
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
     ]
-  },
-  "native": {
-    "bearerToken": "",
-    "devices": [
-      {
-        "deviceId": "",
-        "sourceState": "",
-        "allowRounding": true
-      }
-    ]
-  },
-  "encryptedNative": ["bearerToken"],
-  "protectedNative": ["bearerToken"],
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "info",
-      "type": "channel",
-      "common": {
-        "name": "Information"
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.connection",
-      "type": "state",
-      "common": {
-        "role": "indicator.connected",
-        "name": "Device or service connected",
-        "type": "boolean",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    }
-  ]
 }

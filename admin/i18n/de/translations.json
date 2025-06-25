@@ -1,8 +1,8 @@
 {
-  "labelBearerToken": "Personal Access Token",
-  "labelDeviceId": "Energy Tracker Geräte-ID",
-  "labelSourceState": "Datenpunkt-ID (State)",
-  "labelAllowRounding": "Rundung erlauben",
-  "headerDevices": "Geräte",
-  "infoIntro": "Erstellen Sie zunächst ein persönliches Zugriffstoken unter https://www.energy-tracker.best-ios-apps.de. Danach können Sie Ihre Standardmessgeräte abrufen, um die jeweiligen Geräte-IDs zu erhalten. Die genaue Vorgehensweise ist in der API-Dokumentation beschrieben."
+    "labelBearerToken": "Personal Access Token",
+    "labelDeviceId": "Energy Tracker Geräte-ID",
+    "labelSourceState": "Datenpunkt-ID (State)",
+    "labelAllowRounding": "Rundung erlauben",
+    "headerDevices": "Geräte",
+    "infoIntro": "Erstellen Sie zunächst ein persönliches Zugriffstoken unter https://www.energy-tracker.best-ios-apps.de. Danach können Sie Ihre Standardmessgeräte abrufen, um die jeweiligen Geräte-IDs zu erhalten. Die genaue Vorgehensweise ist in der API-Dokumentation beschrieben."
 }

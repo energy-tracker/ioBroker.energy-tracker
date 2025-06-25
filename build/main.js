@@ -40,19 +40,19 @@ class EnergyTracker extends utils.Adapter {
     constructor(options = {}) {
         super({
             ...options,
-            name: "energy-tracker",
+            name: 'energy-tracker',
         });
-        this.on("ready", this.onReady.bind(this));
+        this.on('ready', this.onReady.bind(this));
     }
     async onReady() {
         this.api = new energy_tracker_api_1.EnergyTrackerApi(this);
-        await this.setState("info.connection", { val: false, ack: true });
+        await this.setState('info.connection', { val: false, ack: true });
         if (!this.config.bearerToken) {
-            this.terminate("Missing bearer token in adapter configuration – skipping adapter start.");
+            this.terminate('Missing bearer token in adapter configuration – skipping adapter start.');
             return;
         }
         if (!Array.isArray(this.config.devices) || this.config.devices.length === 0) {
-            this.terminate("No devices configured in adapter settings – skipping adapter start.");
+            this.terminate('No devices configured in adapter settings – skipping adapter start.');
             return;
         }
         for (const device of this.config.devices) {
@@ -62,8 +62,8 @@ class EnergyTracker extends utils.Adapter {
             }
             void this.api.sendReading(device);
         }
-        await this.setState("info.connection", { val: true, ack: true });
-        this.terminate("Terminating scheduled adapter instance.");
+        await this.setState('info.connection', { val: true, ack: true });
+        this.terminate('Terminating scheduled adapter instance.');
     }
 }
 if (require.main !== module) {

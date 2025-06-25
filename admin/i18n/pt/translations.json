@@ -1,8 +1,8 @@
 {
-  "labelBearerToken": "Token de acesso pessoal",
-  "labelDeviceId": "ID do dispositivo rastreador de energia",
-  "labelSourceState": "DataPoint ID (estado)",
-  "labelAllowRounding": "Permitir arredondamento",
-  "headerDevices": "Dispositivos",
-  "infoIntro": "Primeiro, crie um token de acesso pessoal em https://www.energy-tracker.best-ios-aps.de. Em seguida, recupere seus dispositivos padrão para obter os IDs do dispositivo. O procedimento exato é descrito na documentação da API."
+    "labelBearerToken": "Token de acesso pessoal",
+    "labelDeviceId": "ID do dispositivo rastreador de energia",
+    "labelSourceState": "DataPoint ID (estado)",
+    "labelAllowRounding": "Permitir arredondamento",
+    "headerDevices": "Dispositivos",
+    "infoIntro": "Primeiro, crie um token de acesso pessoal em https://www.energy-tracker.best-ios-aps.de. Em seguida, recupere seus dispositivos padrão para obter os IDs do dispositivo. O procedimento exato é descrito na documentação da API."
 }
