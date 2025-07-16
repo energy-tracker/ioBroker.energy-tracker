@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "energy-tracker",
-        "version": "0.2.7",
+        "version": "0.2.8",
         "news": {
+            "0.2.8": {
+                "en": "Improved API reliability, added request timeout, and addressed review feedback.",
+                "de": "API-Fehlerbehandlung verbessert, Timeout ergänzt und Review-Anmerkungen umgesetzt.",
+                "ru": "Улучшенная надежность API, добавленная тайм -аут запроса и адресованные отзывы.",
+                "pt": "A melhor confiabilidade da API, o tempo limite de solicitação adicionado e abordou o feedback da revisão.",
+                "nl": "Verbeterde API -betrouwbaarheid, toegevoegde aanvraagtime -out en geadresseerde beoordelingsfeedback.",
+                "fr": "Amélioration de la fiabilité de l'API, ajouté le délai d'expiration de la demande et abordé les commentaires de la révision.",
+                "it": "Affidabilità API migliorata, aggiunta timeout di richiesta e feedback di revisione indirizzato.",
+                "es": "La confiabilidad de API mejorada, el tiempo de espera de solicitud adicional y los comentarios de revisión abordados.",
+                "pl": "Ulepszona niezawodność interfejsu API, dodany limit czasu żądania i adresowa informacja zwrotna z przeglądu.",
+                "uk": "Поліпшена надійність API, доданий час очікування запиту та вирішив відгук про огляд.",
+                "zh-cn": "提高了API可靠性，添加了请求超时并解决了审核反馈。"
+            },
             "0.2.7": {
                 "en": "Updated ESLint to v9, fixed repository URL in package.json, and improved test coverage.",
                 "de": "Aktualisiert ESLINT auf V9, repository -URL in package.json und verbesserte Testabdeckung.",
@@ -80,19 +93,6 @@
                 "pl": "Ulepszone wsparcie testów integracji",
                 "uk": "Покращена підтримка тестування інтеграції",
                 "zh-cn": "改善对集成测试的支持"
-            },
-            "0.2.1": {
-                "en": "Added default schedule configuration for scheduled adapter mode",
-                "de": "Die Konfiguration des Standardplans für den geplanten Adaptermodus hinzugefügt",
-                "ru": "Добавлена ​​конфигурация графика по умолчанию для запланированного режима адаптера",
-                "pt": "Configuração de programação padrão adicionada para o modo de adaptador programado",
-                "nl": "Standaardschema -configuratie toegevoegd voor de geplande adaptermodus",
-                "fr": "Ajout de la configuration du calendrier par défaut pour le mode adaptateur planifié",
-                "it": "Aggiunta configurazione di pianificazione predefinita per la modalità adattatore pianificata",
-                "es": "Se agregó la configuración de programación predeterminada para el modo de adaptador programado",
-                "pl": "Dodano domyślną konfigurację harmonogramu dla zaplanowanego trybu adaptera",
-                "uk": "Додана конфігурація розкладу за замовчуванням для режиму запланованого адаптера",
-                "zh-cn": "为计划适配器模式添加了默认计划配置"
             }
         },
         "titleLang": {

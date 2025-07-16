@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const BASE_URL = 'https://public-api.energy-tracker.best-ios-apps.de';
+import { isAxiosError, type AxiosInstance } from 'axios';
 
 /**
  * API client for sending meter readings to the Energy Tracker platform.
@@ -9,9 +7,13 @@ export class EnergyTrackerApi {
     /**
      * Creates a new instance of the EnergyTrackerApi.
      *
-     * @param adapter ioBroker adapter instance for logging and state management.
+     * @param adapter ioBroker adapter instance for logging and state management
+     * @param client  Preconfigured Axios HTTP client instance for API requests
      */
-    constructor(private readonly adapter: ioBroker.Adapter) {}
+    constructor(
+        private readonly adapter: ioBroker.Adapter,
+        private readonly client: AxiosInstance,
+    ) {}
 
     /**
      * Sends a meter reading for the given device to the Energy Tracker API.
@@ -30,7 +32,7 @@ export class EnergyTrackerApi {
 
             const body = { value: state.val };
 
-            await axios.post(`${BASE_URL}/v1/devices/${device.deviceId}/meter-readings`, body, {
+            await this.client.post(`/v1/devices/${device.deviceId}/meter-readings`, body, {
                 headers: {
                     Authorization: `Bearer ${this.adapter.config.bearerToken}`,
                     'Content-Type': 'application/json',
@@ -47,12 +49,17 @@ export class EnergyTrackerApi {
     }
 
     private handleError(logPrefix: string, err: unknown): void {
-        if (!axios.isAxiosError(err)) {
+        if (!isAxiosError(err)) {
             this.adapter.log.error(`${logPrefix} Unexpected error: ${String(err)}`);
             return;
         }
 
         const { status, data } = err.response ?? {};
+
+        if (err.code === 'ECONNABORTED') {
+            this.adapter.log.error(`${logPrefix} Request timed out after ${err.config?.timeout ?? 'unknown'} ms`);
+            return;
+        }
 
         if (status === undefined) {
             this.adapter.log.error(`${logPrefix} Network error: ${err.message}`);

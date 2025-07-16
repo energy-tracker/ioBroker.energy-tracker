@@ -35,6 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils = __importStar(require("@iobroker/adapter-core"));
 const energy_tracker_api_1 = require("./lib/energy-tracker-api");
+const axios_instance_1 = require("./lib/axios-instance");
 class EnergyTracker extends utils.Adapter {
     api;
     constructor(options = {}) {
@@ -45,7 +46,7 @@ class EnergyTracker extends utils.Adapter {
         this.on('ready', this.onReady.bind(this));
     }
     async onReady() {
-        this.api = new energy_tracker_api_1.EnergyTrackerApi(this);
+        this.api = new energy_tracker_api_1.EnergyTrackerApi(this, axios_instance_1.energyTrackerAxios);
         await this.setState('info.connection', { val: false, ack: true });
         if (!this.config.bearerToken) {
             this.terminate('Missing bearer token in adapter configuration – skipping adapter start.');
@@ -55,13 +56,15 @@ class EnergyTracker extends utils.Adapter {
             this.terminate('No devices configured in adapter settings – skipping adapter start.');
             return;
         }
+        const sendReadingPromises = [];
         for (const device of this.config.devices) {
             if (!device.deviceId || !device.sourceState) {
                 this.log.warn(`[${device.sourceState}] Device config incomplete – skipping.`);
                 continue;
             }
-            void this.api.sendReading(device);
+            sendReadingPromises.push(this.api.sendReading(device));
         }
+        await Promise.all(sendReadingPromises);
         await this.setState('info.connection', { val: true, ack: true });
         this.terminate('Terminating scheduled adapter instance.');
     }

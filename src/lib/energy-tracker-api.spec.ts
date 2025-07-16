@@ -1,14 +1,14 @@
 import chai, { assert, expect } from 'chai';
 import sinonChai from 'sinon-chai';
 import sinon from 'sinon';
-import axios from 'axios';
+import type { AxiosInstance } from 'axios';
 import { EnergyTrackerApi } from './energy-tracker-api';
 
 chai.use(sinonChai);
 
 describe('EnergyTrackerApi', () => {
     let adapterMock: sinon.SinonStubbedInstance<ioBroker.Adapter>;
-    let axiosPostStub: sinon.SinonStub;
+    let axiosInstanceMock: sinon.SinonStubbedInstance<AxiosInstance>;
     let api: EnergyTrackerApi;
 
     beforeEach(() => {
@@ -25,8 +25,11 @@ describe('EnergyTrackerApi', () => {
             },
         } as unknown as sinon.SinonStubbedInstance<ioBroker.Adapter>;
 
-        axiosPostStub = sinon.stub(axios, 'post');
-        api = new EnergyTrackerApi(adapterMock);
+        axiosInstanceMock = {
+            post: sinon.stub(),
+        } as unknown as sinon.SinonStubbedInstance<AxiosInstance>;
+
+        api = new EnergyTrackerApi(adapterMock, axiosInstanceMock);
     });
 
     afterEach(() => {
@@ -52,12 +55,12 @@ describe('EnergyTrackerApi', () => {
         await api.sendReading(device);
 
         // Assert
-        assert.isTrue(axiosPostStub.calledOnce);
-        const [url, body, config] = axiosPostStub.firstCall.args;
-        expect(url).to.include('/v1/devices/abc123/meter-readings');
+        assert.isTrue(axiosInstanceMock.post.calledOnce);
+        const [url, body, config] = axiosInstanceMock.post.firstCall.args;
+        expect(url).to.equal('/v1/devices/abc123/meter-readings');
         expect(body).to.deep.equal({ value: 123.456 });
-        expect(config.headers.Authorization).to.equal('Bearer test-token');
-        expect(config.params).to.deep.equal({});
+        expect(config?.headers?.Authorization).to.equal('Bearer test-token');
+        expect(config?.params).to.deep.equal({});
         expect(adapterMock.log.info).to.have.been.calledWithMatch('[test.state] Reading sent: 123.456');
     });
 
@@ -80,7 +83,7 @@ describe('EnergyTrackerApi', () => {
         await api.sendReading(device);
 
         // Assert
-        expect(axiosPostStub.firstCall.args[2].params).to.deep.equal({ allowRounding: true });
+        expect(axiosInstanceMock.post.firstCall.args[2]?.params).to.deep.equal({ allowRounding: true });
     });
 
     it('should warn on invalid state value', async () => {
@@ -103,7 +106,7 @@ describe('EnergyTrackerApi', () => {
 
         // Assert
         expect(adapterMock.log.warn).to.have.been.calledWithMatch('Invalid or missing state');
-        assert.isFalse(axiosPostStub.called);
+        assert.isFalse(axiosInstanceMock.post.called);
     });
 
     it('should handle 400 Bad Request gracefully', async () => {
@@ -121,7 +124,7 @@ describe('EnergyTrackerApi', () => {
             from: 'system.adapter.test',
         });
 
-        axiosPostStub.rejects({
+        axiosInstanceMock.post.rejects({
             isAxiosError: true,
             response: {
                 status: 400,
@@ -151,7 +154,7 @@ describe('EnergyTrackerApi', () => {
             from: 'system.adapter.test',
         });
 
-        axiosPostStub.rejects({
+        axiosInstanceMock.post.rejects({
             isAxiosError: true,
             response: {
                 status: 401,
@@ -183,7 +186,7 @@ describe('EnergyTrackerApi', () => {
             from: 'system.adapter.test',
         });
 
-        axiosPostStub.rejects({
+        axiosInstanceMock.post.rejects({
             isAxiosError: true,
             response: {
                 status: 403,
@@ -215,7 +218,7 @@ describe('EnergyTrackerApi', () => {
             from: 'system.adapter.test',
         });
 
-        axiosPostStub.rejects({
+        axiosInstanceMock.post.rejects({
             isAxiosError: true,
             response: {
                 status: 429,
@@ -248,7 +251,7 @@ describe('EnergyTrackerApi', () => {
             from: 'system.adapter.test',
         });
 
-        axiosPostStub.rejects({
+        axiosInstanceMock.post.rejects({
             isAxiosError: true,
             response: {
                 status: 429,
@@ -281,7 +284,7 @@ describe('EnergyTrackerApi', () => {
             from: 'system.adapter.test',
         });
 
-        axiosPostStub.rejects({
+        axiosInstanceMock.post.rejects({
             isAxiosError: true,
             response: {
                 status: 502,
@@ -311,7 +314,7 @@ describe('EnergyTrackerApi', () => {
             from: 'system.adapter.test',
         });
 
-        axiosPostStub.rejects({
+        axiosInstanceMock.post.rejects({
             isAxiosError: true,
             response: {
                 status: 418,
@@ -343,7 +346,7 @@ describe('EnergyTrackerApi', () => {
             from: 'system.adapter.test',
         });
 
-        axiosPostStub.rejects({
+        axiosInstanceMock.post.rejects({
             isAxiosError: true,
             message: 'Network down',
             response: undefined,
@@ -371,7 +374,7 @@ describe('EnergyTrackerApi', () => {
             from: 'system.adapter.test',
         });
 
-        axiosPostStub.rejects(new Error('Something went wrong'));
+        axiosInstanceMock.post.rejects(new Error('Something went wrong'));
 
         await api.sendReading(device);
 
@@ -395,7 +398,7 @@ describe('EnergyTrackerApi', () => {
 
         // Assert
         expect(adapterMock.log.warn).to.have.been.calledWithMatch('Invalid or missing state');
-        assert.isFalse(axiosPostStub.called);
+        assert.isFalse(axiosInstanceMock.post.called);
     });
 
     it('should set info.connection to true on success', async () => {
@@ -412,7 +415,7 @@ describe('EnergyTrackerApi', () => {
             lc: Date.now(),
             from: 'system.adapter.test',
         });
-        axiosPostStub.resolves({});
+        axiosInstanceMock.post.resolves({});
 
         // Act
         await api.sendReading(device);
@@ -437,7 +440,7 @@ describe('EnergyTrackerApi', () => {
             lc: Date.now(),
             from: 'system.adapter.test',
         });
-        axiosPostStub.rejects({
+        axiosInstanceMock.post.rejects({
             isAxiosError: true,
             response: {
                 status: 401,

@@ -1,5 +1,6 @@
 import * as utils from '@iobroker/adapter-core';
 import { EnergyTrackerApi } from './lib/energy-tracker-api';
+import { energyTrackerAxios } from './lib/axios-instance';
 
 class EnergyTracker extends utils.Adapter {
     private api!: EnergyTrackerApi;
@@ -14,7 +15,7 @@ class EnergyTracker extends utils.Adapter {
     }
 
     private async onReady(): Promise<void> {
-        this.api = new EnergyTrackerApi(this);
+        this.api = new EnergyTrackerApi(this, energyTrackerAxios);
 
         await this.setState('info.connection', { val: false, ack: true });
 
@@ -27,14 +28,16 @@ class EnergyTracker extends utils.Adapter {
             return;
         }
 
+        const sendReadingPromises = [];
         for (const device of this.config.devices) {
             if (!device.deviceId || !device.sourceState) {
                 this.log.warn(`[${device.sourceState}] Device config incomplete – skipping.`);
                 continue;
             }
 
-            void this.api.sendReading(device);
+            sendReadingPromises.push(this.api.sendReading(device));
         }
+        await Promise.all(sendReadingPromises);
 
         await this.setState('info.connection', { val: true, ack: true });
         this.terminate('Terminating scheduled adapter instance.');

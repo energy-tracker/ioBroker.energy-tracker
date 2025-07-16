@@ -41,6 +41,10 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 
 ## Changelog
 
+### 0.2.8
+
+- Improved API reliability, added request timeout, and addressed review feedback.
+
 ### 0.2.7
 
 - Updated ESLint to v9, fixed repository URL in package.json, and improved test coverage.

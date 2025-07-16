@@ -1,15 +1,13 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnergyTrackerApi = void 0;
-const axios_1 = __importDefault(require("axios"));
-const BASE_URL = 'https://public-api.energy-tracker.best-ios-apps.de';
+const axios_1 = require("axios");
 class EnergyTrackerApi {
     adapter;
-    constructor(adapter) {
+    client;
+    constructor(adapter, client) {
         this.adapter = adapter;
+        this.client = client;
     }
     async sendReading(device) {
         const logPrefix = `[${device.sourceState}]`;
@@ -20,7 +18,7 @@ class EnergyTrackerApi {
                 return;
             }
             const body = { value: state.val };
-            await axios_1.default.post(`${BASE_URL}/v1/devices/${device.deviceId}/meter-readings`, body, {
+            await this.client.post(`/v1/devices/${device.deviceId}/meter-readings`, body, {
                 headers: {
                     Authorization: `Bearer ${this.adapter.config.bearerToken}`,
                     'Content-Type': 'application/json',
@@ -36,11 +34,15 @@ class EnergyTrackerApi {
         }
     }
     handleError(logPrefix, err) {
-        if (!axios_1.default.isAxiosError(err)) {
+        if (!(0, axios_1.isAxiosError)(err)) {
             this.adapter.log.error(`${logPrefix} Unexpected error: ${String(err)}`);
             return;
         }
         const { status, data } = err.response ?? {};
+        if (err.code === 'ECONNABORTED') {
+            this.adapter.log.error(`${logPrefix} Request timed out after ${err.config?.timeout ?? 'unknown'} ms`);
+            return;
+        }
         if (status === undefined) {
             this.adapter.log.error(`${logPrefix} Network error: ${err.message}`);
             return;
