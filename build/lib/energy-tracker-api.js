@@ -18,7 +18,7 @@ class EnergyTrackerApi {
                 return;
             }
             const body = { value: state.val };
-            await this.client.post(`/v1/devices/${device.deviceId}/meter-readings`, body, {
+            await this.client.post(`/v1/devices/standard/${device.deviceId}/meter-readings`, body, {
                 headers: {
                     Authorization: `Bearer ${this.adapter.config.bearerToken}`,
                     'Content-Type': 'application/json',

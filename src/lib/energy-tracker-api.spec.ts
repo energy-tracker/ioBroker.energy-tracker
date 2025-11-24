@@ -57,7 +57,7 @@ describe('EnergyTrackerApi', () => {
         // Assert
         assert.isTrue(axiosInstanceMock.post.calledOnce);
         const [url, body, config] = axiosInstanceMock.post.firstCall.args;
-        expect(url).to.equal('/v1/devices/abc123/meter-readings');
+        expect(url).to.equal('/v1/devices/standard/abc123/meter-readings');
         expect(body).to.deep.equal({ value: 123.456 });
         expect(config?.headers?.Authorization).to.equal('Bearer test-token');
         expect(config?.params).to.deep.equal({});

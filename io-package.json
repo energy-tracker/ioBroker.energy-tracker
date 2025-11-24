@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "energy-tracker",
-        "version": "0.2.8",
+        "version": "0.3.0",
         "news": {
+            "0.3.0": {
+                "en": "Updated dependencies and switched to the new v2 meter-reading API.",
+                "de": "Aktualisierte Abhängigkeiten und Umstellung auf die neue v2-API zur Zählerablesung.",
+                "ru": "Обновлены зависимости и переключен на новый API считывания показаний счетчиков версии 2.",
+                "pt": "Dependências atualizadas e mudança para a nova API de leitura de medidor v2.",
+                "nl": "Afhankelijkheden bijgewerkt en overgestapt naar de nieuwe v2-API voor meteruitlezing.",
+                "fr": "Dépendances mises à jour et passage à la nouvelle API de lecture de compteur v2.",
+                "it": "Dipendenze aggiornate e passaggio alla nuova API di lettura dei contatori v2.",
+                "es": "Se actualizaron las dependencias y se cambió a la nueva API de lectura de medidores v2.",
+                "pl": "Zaktualizowano zależności i przełączono na nowy interfejs API odczytu liczników w wersji 2.",
+                "uk": "Оновлено залежності та переключено на новий API зчитування лічильників v2.",
+                "zh-cn": "更新了依赖项并切换到新的 v2 抄表 API。"
+            },
             "0.2.8": {
                 "en": "Improved API reliability, added request timeout, and addressed review feedback.",
                 "de": "API-Fehlerbehandlung verbessert, Timeout ergänzt und Review-Anmerkungen umgesetzt.",
@@ -80,19 +93,6 @@
                 "pl": "Zmniejszony rozmiar kompilacji",
                 "uk": "Зменшений розмір збірки",
                 "zh-cn": "减小构建尺寸"
-            },
-            "0.2.2": {
-                "en": "Improved support for integration testing",
-                "de": "Verbesserte Unterstützung für Integrationstests",
-                "ru": "Улучшенная поддержка интеграционного тестирования",
-                "pt": "Suporte aprimorado para testes de integração",
-                "nl": "Verbeterde ondersteuning voor integratietesten",
-                "fr": "Amélioration du support pour les tests d'intégration",
-                "it": "Supporto migliorato per i test di integrazione",
-                "es": "Soporte mejorado para las pruebas de integración",
-                "pl": "Ulepszone wsparcie testów integracji",
-                "uk": "Покращена підтримка тестування інтеграції",
-                "zh-cn": "改善对集成测试的支持"
             }
         },
         "titleLang": {

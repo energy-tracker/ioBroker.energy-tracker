@@ -1,8 +1,8 @@
 {
+    "headerDevices": "Urządzenia",
+    "infoIntro": "Najpierw utwórz osobisty token dostępu na https://www.energy-tracker.best-ios-apps.de. Następnie odzyskaj urządzenia standardowe, aby uzyskać identyfikatory urządzeń. Dokładną procedurę opisano w dokumentacji API.",
+    "labelAllowRounding": "Pozwól zaokrąglanie",
     "labelBearerToken": "Token osobisty",
     "labelDeviceId": "Identyfikator urządzenia do śledzenia energii",
-    "labelSourceState": "DataPoint ID (stan)",
-    "labelAllowRounding": "Pozwól zaokrąglanie",
-    "headerDevices": "Urządzenia",
-    "infoIntro": "Najpierw utwórz osobisty token dostępu na https://www.energy-tracker.best-ios-apps.de. Następnie odzyskaj urządzenia standardowe, aby uzyskać identyfikatory urządzeń. Dokładną procedurę opisano w dokumentacji API."
+    "labelSourceState": "DataPoint ID (stan)"
 }
