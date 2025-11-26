@@ -41,6 +41,10 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 
 ## Changelog
 
+### 0.3.1
+
+- Cleaned up dev dependencies and updated the admin adapter to version 7.6.17.
+
 ### 0.3.0
 
 - Updated all adapter dependencies to current stable versions.

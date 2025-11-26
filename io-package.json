@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "energy-tracker",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "news": {
+            "0.3.1": {
+                "en": "Maintenance: cleaned up dev deps and updated admin to 7.6.17.",
+                "de": "Wartung: Dev Deps bereinigt und Admin auf 7.6.17 aktualisiert.",
+                "ru": "Техническое обслуживание: очищены данные разработчиков и обновлена ​​администрация до версии 7.6.17.",
+                "pt": "Manutenção: limpeza dos departamentos de desenvolvimento e atualização do administrador para 7.6.17.",
+                "nl": "Onderhoud: ontwikkelaarsdeps opgeschoond en admin bijgewerkt naar 7.6.17.",
+                "fr": "Maintenance : nettoyage des développeurs et mise à jour de l'administrateur vers la version 7.6.17.",
+                "it": "Manutenzione: ripuliti i reparti di sviluppo e aggiornato l'amministratore alla versione 7.6.17.",
+                "es": "Mantenimiento: departamentos de desarrollo limpios y administrador actualizado a 7.6.17.",
+                "pl": "Konserwacja: wyczyszczono działy deweloperskie i zaktualizowano administratora do wersji 7.6.17.",
+                "uk": "Обслуговування: очищено dev deps і оновлено адмін до 7.6.17.",
+                "zh-cn": "维护：清理开发部门并将管理更新至 7.6.17。"
+            },
             "0.3.0": {
                 "en": "Updated dependencies and switched to the new v2 meter-reading API.",
                 "de": "Aktualisierte Abhängigkeiten und Umstellung auf die neue v2-API zur Zählerablesung.",
@@ -80,19 +93,6 @@
                 "pl": "Usunięte stare wpisy wiadomości (ustal ostrzeżenie W132)",
                 "uk": "Вилучено старі записи новин (виправити попередження W132)",
                 "zh-cn": "删除了旧新闻报道（修复W132警告）"
-            },
-            "0.2.3": {
-                "en": "Reduced build size",
-                "de": "Reduzierte Build -Größe",
-                "ru": "Увеличенный размер сборки",
-                "pt": "Tamanho de construção reduzido",
-                "nl": "Verminderde bouwgrootte",
-                "fr": "Taille de construction réduite",
-                "it": "Dimensione della build ridotta",
-                "es": "Tamaño de construcción reducido",
-                "pl": "Zmniejszony rozmiar kompilacji",
-                "uk": "Зменшений розмір збірки",
-                "zh-cn": "减小构建尺寸"
             }
         },
         "titleLang": {
@@ -154,7 +154,7 @@
         ],
         "globalDependencies": [
             {
-                "admin": ">=7.4.10"
+                "admin": ">=7.6.17"
             }
         ]
     },

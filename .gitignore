@@ -14,3 +14,6 @@ iobroker.*.tgz
 
 # OS
 .DS_Store
+
+# Tooling
+.commitinfo
