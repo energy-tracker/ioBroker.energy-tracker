@@ -108,5 +108,5 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 
 MIT – see [LICENSE](LICENSE).
 
-Copyright (c) 2017-2025 Bluefox <dogafox@gmail.com>  
+Copyright (c) 2017-2026 Bluefox <dogafox@gmail.com>  
 Copyright (c) 2015-2025 energy-tracker support@best-ios-apps.de
