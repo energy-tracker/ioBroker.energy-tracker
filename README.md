@@ -41,6 +41,9 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 
 ## Changelog
 
+### **WORK IN PROGRESS**
+- (copilot) Adapter requires node.js >= 22 now
+
 ### 0.3.1
 
 - Cleaned up dev dependencies and updated the admin adapter to version 7.6.17.
