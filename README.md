@@ -104,6 +104,8 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 - Initial version with full Admin UI configuration
 - Supports multiple devices and configurable intervals
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 MIT – see [LICENSE](LICENSE).
