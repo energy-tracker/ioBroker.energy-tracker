@@ -5,6 +5,7 @@
 
 # Dependencies
 node_modules/
+build/
 
 # npm packages
 iobroker.*.tgz

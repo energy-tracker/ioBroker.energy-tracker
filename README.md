@@ -12,6 +12,8 @@ It periodically transfers values from configured ioBroker states using the publi
 
 ## Requirements
 
+Requires Node.js 22 or newer and ioBroker Admin 7.6.20 or newer.
+
 1. **Register an account:**  
    👉 [Create your account](https://www.energy-tracker.best-ios-apps.de/en-US/register)
 
@@ -40,6 +42,11 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 - Data is only **sent** – no readings are retrieved.
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+
+- Require Node.js 22 or newer and test on Node.js 22, 24 and 26.
+- Update dependencies, release tools and adapter metadata.
 
 ### 0.3.1
 
@@ -108,5 +115,6 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 
 MIT – see [LICENSE](LICENSE).
 
-Copyright (c) 2017-2025 Bluefox <dogafox@gmail.com>  
-Copyright (c) 2015-2025 energy-tracker support@best-ios-apps.de
+Copyright (c) 2017-2026 Bluefox <dogafox@gmail.com>
+
+Copyright (c) 2015-2026 energy-tracker support@energy-tracker.app

@@ -123,7 +123,8 @@
         },
         "authors": [
             {
-                "name": "Energy Tracker"
+                "name": "Energy Tracker",
+                "email": "support@energy-tracker.app"
             }
         ],
         "keywords": ["energy tracker", "meter readings", "power consumption", "rest api"],
@@ -154,7 +155,7 @@
         ],
         "globalDependencies": [
             {
-                "admin": ">=7.6.17"
+                "admin": ">=7.6.20"
             }
         ]
     },
