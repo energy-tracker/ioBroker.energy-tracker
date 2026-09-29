@@ -23,8 +23,8 @@
         "node": ">=22"
     },
     "dependencies": {
-        "@iobroker/adapter-core": "^3.4.3",
-        "axios": "^1.20.0"
+        "@energy-tracker/api-client": "^1.0.1",
+        "@iobroker/adapter-core": "^3.4.3"
     },
     "devDependencies": {
         "@alcalzone/release-script": "^5.2.1",
@@ -62,6 +62,7 @@
         "build/",
         "www/",
         "io-package.json",
+        "CHANGELOG_OLD.md",
         "LICENSE"
     ],
     "scripts": {
@@ -73,8 +74,8 @@
         "test:package": "mocha test/package --exit",
         "test:integration": "mocha test/integration --exit",
         "check": "tsc --noEmit",
-        "format": "prettier --write .",
-        "format:check": "prettier --check .",
+        "format": "prettier --ignore-path .gitignore --write .",
+        "format:check": "prettier --ignore-path .gitignore --check .",
         "lint": "eslint --ext .ts src/",
         "translate": "translate-adapter",
         "release": "release-script",

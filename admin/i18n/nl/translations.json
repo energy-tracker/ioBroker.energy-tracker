@@ -4,5 +4,8 @@
     "labelAllowRounding": "Ronding toestaan",
     "labelBearerToken": "Persoonlijke toegang token",
     "labelDeviceId": "ENERGY TRACKER Device ID",
-    "labelSourceState": "Datapoint ID (status)"
+    "labelSourceState": "Datapoint ID (status)",
+    "labelTimeoutRetries": "Nieuwe pogingen na een time-out (0–2)",
+    "labelRetryDelay": "Wachttijd tussen pogingen (seconden)",
+    "helpTimeoutRetries": "Standaard uitgeschakeld. Gebruikt dezelfde waarde en tijdstempel. Controleer bij een conflict na een time-out de meterstand in Energy Tracker."
 }

@@ -1,80 +1,95 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnergyTrackerApi = void 0;
-const axios_1 = require("axios");
+const api_client_1 = require("@energy-tracker/api-client");
+const promises_1 = require("node:timers/promises");
 class EnergyTrackerApi {
     adapter;
     client;
-    constructor(adapter, client) {
+    retries;
+    retryDelay;
+    constructor(adapter, client, retries = 0, retryDelay = 2) {
         this.adapter = adapter;
         this.client = client;
+        this.retries = retries;
+        this.retryDelay = retryDelay;
+        if (!Number.isInteger(retries) || retries < 0 || retries > 2) {
+            throw new api_client_1.ValidationError('Timeout retries must be an integer between 0 and 2');
+        }
+        if (retries > 0 && (!Number.isFinite(retryDelay) || retryDelay < 1 || retryDelay > 60)) {
+            throw new api_client_1.ValidationError('Retry delay must be between 1 and 60 seconds');
+        }
     }
-    async sendReading(device) {
-        const logPrefix = `[${device.sourceState}]`;
+    async sendReading(device, signal) {
+        const prefix = `[${device.sourceState}]`;
+        let attempt = 0;
         try {
             const state = await this.adapter.getForeignStateAsync(device.sourceState);
-            if (!state || typeof state.val !== 'number') {
-                this.adapter.log.warn(`Invalid or missing state for ${device.sourceState}`);
-                return;
+            if (signal?.aborted) {
+                return false;
             }
-            const body = { value: state.val };
-            await this.client.post(`/v1/devices/standard/${device.deviceId}/meter-readings`, body, {
-                headers: {
-                    Authorization: `Bearer ${this.adapter.config.bearerToken}`,
-                    'Content-Type': 'application/json',
-                },
-                params: device.allowRounding ? { allowRounding: true } : {},
-            });
-            this.adapter.log.info(`${logPrefix} Reading sent: ${state.val}`);
-            await this.adapter.setState('info.connection', { val: true, ack: true });
+            if (!state ||
+                (typeof state.val !== 'number' && typeof state.val !== 'string') ||
+                (typeof state.val === 'number' && !Number.isFinite(state.val))) {
+                this.adapter.log.warn(`${prefix} Invalid or missing numeric state`);
+                return false;
+            }
+            const reading = {
+                value: String(state.val),
+                ...(this.retries > 0 ? { timestamp: new Date() } : {}),
+            };
+            for (;;) {
+                try {
+                    await this.client.meterReadings.create(device.deviceId, reading, {
+                        allowRounding: device.allowRounding,
+                        signal,
+                    });
+                    this.adapter.log.info(`${prefix} Reading sent: ${reading.value}`);
+                    return true;
+                }
+                catch (err) {
+                    if (!(err instanceof api_client_1.TimeoutError) || attempt >= this.retries || signal?.aborted) {
+                        throw err;
+                    }
+                    attempt++;
+                    this.adapter.log.warn(`${prefix} Request timed out; retry ${attempt}/${this.retries} in ${this.retryDelay} seconds`);
+                    await (0, promises_1.setTimeout)(this.retryDelay * 1000, undefined, { signal });
+                }
+            }
         }
         catch (err) {
-            await this.adapter.setState('info.connection', { val: false, ack: true });
-            this.handleError(logPrefix, err);
+            if (!signal?.aborted) {
+                this.handleError(prefix, err, attempt > 0);
+            }
+            return false;
         }
     }
-    handleError(logPrefix, err) {
-        if (!(0, axios_1.isAxiosError)(err)) {
-            this.adapter.log.error(`${logPrefix} Unexpected error: ${String(err)}`);
-            return;
+    handleError(prefix, err, retried) {
+        if (err instanceof api_client_1.AuthenticationError) {
+            this.adapter.log.error(`${prefix} Unauthorized: Check your access token`);
         }
-        const { status, data } = err.response ?? {};
-        if (err.code === 'ECONNABORTED') {
-            this.adapter.log.error(`${logPrefix} Request timed out after ${err.config?.timeout ?? 'unknown'} ms`);
-            return;
+        else if (err instanceof api_client_1.ForbiddenError) {
+            this.adapter.log.error(`${prefix} Forbidden: Insufficient permissions`);
         }
-        if (status === undefined) {
-            this.adapter.log.error(`${logPrefix} Network error: ${err.message}`);
-            return;
+        else if (err instanceof api_client_1.TimeoutError) {
+            this.adapter.log.error(`${prefix} Request timed out after 10 seconds; the reading may already be saved`);
         }
-        switch (status) {
-            case 400:
-                this.adapter.log.warn(`${logPrefix} Bad Request: ${data?.message ?? 'Invalid input'}`);
-                break;
-            case 401:
-                this.adapter.log.error(`${logPrefix} Unauthorized: Check your access token`);
-                break;
-            case 403:
-                this.adapter.log.error(`${logPrefix} Forbidden: Insufficient permissions`);
-                break;
-            case 429: {
-                const retryAfter = err.response?.headers?.['retry-after'];
-                const retryAfterSec = Number(retryAfter);
-                let msg = `${logPrefix} Too many requests: Rate limit exceeded`;
-                if (retryAfter && !isNaN(retryAfterSec)) {
-                    msg += ` – Retry after ${retryAfter} seconds.`;
-                }
-                this.adapter.log.warn(msg);
-                break;
-            }
-            default: {
-                if (status >= 500 && status <= 599) {
-                    this.adapter.log.warn(`${logPrefix} Server error ${status}: ${data?.message ?? 'Internal server error'}`);
-                }
-                else {
-                    this.adapter.log.warn(`${logPrefix} Unexpected HTTP ${status}: ${data?.message ?? 'Unknown error'}`);
-                }
-            }
+        else if (err instanceof api_client_1.ConflictError && retried) {
+            this.adapter.log.warn(`${prefix} Conflict after timeout: the submission outcome is uncertain; check the reading in Energy Tracker`);
+        }
+        else if (err instanceof api_client_1.RateLimitError) {
+            const retryAfter = err.retryAfter === null ? '' : ` – Retry after ${err.retryAfter} seconds.`;
+            this.adapter.log.warn(`${prefix} Too many requests: Rate limit exceeded${retryAfter}`);
+        }
+        else if (err instanceof api_client_1.NetworkError) {
+            this.adapter.log.error(`${prefix} Network error: ${err.message}`);
+        }
+        else if (err instanceof api_client_1.EnergyTrackerAPIError) {
+            const status = err.statusCode === null ? 'Invalid input' : `HTTP ${err.statusCode}`;
+            this.adapter.log.warn(`${prefix} ${status}: ${err.apiMessage.join('; ') || err.message}`);
+        }
+        else {
+            this.adapter.log.error(`${prefix} Unexpected error: ${String(err)}`);
         }
     }
 }

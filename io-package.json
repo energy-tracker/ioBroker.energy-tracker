@@ -161,6 +161,8 @@
     },
     "native": {
         "bearerToken": "",
+        "timeoutRetries": 0,
+        "retryDelay": 2,
         "devices": [
             {
                 "deviceId": "",

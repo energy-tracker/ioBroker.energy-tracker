@@ -4,5 +4,8 @@
     "labelAllowRounding": "允许舍入",
     "labelBearerToken": "个人访问令牌",
     "labelDeviceId": "能量跟踪器设备ID",
-    "labelSourceState": "数据点ID（状态）"
+    "labelSourceState": "数据点ID（状态）",
+    "labelTimeoutRetries": "超时后的重试次数（0–2）",
+    "labelRetryDelay": "重试间隔（秒）",
+    "helpTimeoutRetries": "默认禁用。重试使用相同的读数和时间戳。若超时后发生冲突，请在 Energy Tracker 中检查读数。"
 }
