@@ -118,6 +118,35 @@ describe('EnergyTrackerApi', () => {
         expect(adapter.log.error).to.have.been.calledWithMatch('Network error');
     });
 
+    for (const status of [429, 503]) {
+        it(`does not retry HTTP ${status} when its response body times out`, async () => {
+            const clock = sinon.useFakeTimers();
+            api = new EnergyTrackerApi(adapter, client, 2, 1);
+            fetchMock.callsFake((_url: unknown, init: RequestInit) =>
+                Promise.resolve(
+                    new Response(
+                        new ReadableStream({
+                            start(controller) {
+                                init.signal?.addEventListener('abort', () => controller.error(init.signal?.reason), {
+                                    once: true,
+                                });
+                            },
+                        }),
+                        { status, headers: { 'retry-after': '42' } },
+                    ),
+                ),
+            );
+            const result = api.sendReading(device);
+            await clock.tickAsync(40000);
+            expect(await result).to.equal(false);
+            expect(fetchMock).to.have.been.calledOnce;
+            expect(adapter.log.warn).to.have.been.calledWithMatch(
+                status === 429 ? 'Retry after 42 seconds' : 'HTTP 503',
+            );
+            expect(adapter.log.info).not.to.have.been.called;
+        });
+    }
+
     it('reports a source state read error', async () => {
         adapter.getForeignStateAsync.rejects(new Error('State read failed'));
         expect(await api.sendReading(device)).to.equal(false);

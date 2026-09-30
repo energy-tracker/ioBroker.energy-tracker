@@ -23,7 +23,7 @@
         "node": ">=22"
     },
     "dependencies": {
-        "@energy-tracker/api-client": "^1.0.1",
+        "@energy-tracker/api-client": "^1.0.2",
         "@iobroker/adapter-core": "^3.4.3",
         "decimal.js": "^10.6.0"
     },
