@@ -1,5 +1,9 @@
 # Older changes
 
+## 0.2.6
+
+- Added README note: schedule required in ioBroker.
+
 ## 0.2.5
 
 - Updated dependencies for testing and added Node.js v24 to adapter tests.

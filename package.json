@@ -1,6 +1,6 @@
 {
     "name": "iobroker.energy-tracker",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "description": "Adapter for sending meter readings with the Energy Tracker platform.",
     "author": "energy-tracker <support@energy-tracker.app>",
     "contributors": [

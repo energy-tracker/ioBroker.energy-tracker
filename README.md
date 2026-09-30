@@ -47,13 +47,15 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 
 ## Changelog
 
-### **WORK IN PROGRESS**
+### 0.4.0
 
 - Send readings through the Energy Tracker SDK and API v3.
+- Truncate readings to six decimal places before sending.
 - Fix connection status for failed or incomplete batches.
 - Add optional timeout retries with a fixed reading timestamp.
 - Require Node.js 22 or newer and test on Node.js 22, 24 and 26.
 - Update dependencies, release tools and adapter metadata.
+- Publish releases through npm trusted publishing.
 
 ### 0.3.1
 
@@ -72,10 +74,6 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 ### 0.2.7
 
 - Updated ESLint to v9, fixed repository URL in package.json, and improved test coverage.
-
-### 0.2.6
-
-- Added README note: schedule required in ioBroker.
 
 [Older changes](CHANGELOG_OLD.md)
 
