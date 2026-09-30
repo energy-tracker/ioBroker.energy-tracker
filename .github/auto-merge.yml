@@ -1,0 +1,9 @@
+# Production dependencies: patch updates only.
+- match:
+      dependency_type: production
+      update_type: 'semver:patch'
+
+# Development dependencies: patch and minor updates.
+- match:
+      dependency_type: development
+      update_type: 'semver:minor'
