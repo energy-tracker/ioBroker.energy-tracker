@@ -5,7 +5,8 @@
 
 # Dependencies
 node_modules/
-build/
+
+# build/ is intentionally tracked for installation from GitHub.
 
 # npm packages
 iobroker.*.tgz
