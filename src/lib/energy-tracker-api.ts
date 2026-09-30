@@ -10,6 +10,7 @@ import {
     ValidationError,
 } from '@energy-tracker/api-client';
 import { setTimeout as delay } from 'node:timers/promises';
+import Decimal from 'decimal.js';
 
 /** Sends source states through the SDK and reports confirmed delivery. */
 export class EnergyTrackerApi {
@@ -61,7 +62,7 @@ export class EnergyTrackerApi {
 
             // Pin the timestamp when retrying: the server rejects duplicate readings at the same time.
             const reading = {
-                value: String(state.val),
+                value: typeof state.val === 'number' ? new Decimal(state.val).toFixed() : state.val,
                 ...(this.retries > 0 ? { timestamp: new Date() } : {}),
             };
             for (;;) {

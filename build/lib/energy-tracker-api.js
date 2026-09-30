@@ -1,8 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnergyTrackerApi = void 0;
 const api_client_1 = require("@energy-tracker/api-client");
 const promises_1 = require("node:timers/promises");
+const decimal_js_1 = __importDefault(require("decimal.js"));
 class EnergyTrackerApi {
     adapter;
     client;
@@ -35,7 +39,7 @@ class EnergyTrackerApi {
                 return false;
             }
             const reading = {
-                value: String(state.val),
+                value: typeof state.val === 'number' ? new decimal_js_1.default(state.val).toFixed() : state.val,
                 ...(this.retries > 0 ? { timestamp: new Date() } : {}),
             };
             for (;;) {

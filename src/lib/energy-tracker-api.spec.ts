@@ -55,6 +55,18 @@ describe('EnergyTrackerApi', () => {
         expect(JSON.parse(fetchMock.firstCall.args[1].body).value).to.equal('0');
     });
 
+    for (const [value, expected] of [
+        [0.1 + 0.2, '0.30000000000000004'],
+        [1e-7, '0.0000001'],
+        [Number.MIN_VALUE, `0.${'0'.repeat(323)}5`],
+    ] as const) {
+        it(`serializes numeric ${value} as a plain decimal without rounding`, async () => {
+            adapter.getForeignStateAsync.resolves({ ...stateBase, val: value });
+            expect(await api.sendReading({ ...device, allowRounding: true })).to.equal(true);
+            expect(JSON.parse(fetchMock.firstCall.args[1].body).value).to.equal(expected);
+        });
+    }
+
     for (const value of [null, true, NaN, Infinity, -Infinity, '', 'bad', '1,23', '1e3']) {
         it(`does not send an invalid state value: ${String(value)}`, async () => {
             adapter.getForeignStateAsync.resolves({ ...stateBase, val: value });
