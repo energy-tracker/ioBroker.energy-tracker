@@ -34,6 +34,9 @@
             "default": 0,
             "xs": 12,
             "sm": 6,
+            "md": 6,
+            "lg": 6,
+            "xl": 6,
             "newLine": true
         },
         "retryDelay": {
@@ -44,7 +47,10 @@
             "default": 2,
             "hidden": "!data.timeoutRetries",
             "xs": 12,
-            "sm": 6
+            "sm": 6,
+            "md": 6,
+            "lg": 6,
+            "xl": 6
         },
         "devices": {
             "type": "table",
