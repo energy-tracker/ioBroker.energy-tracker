@@ -1,11 +1,11 @@
 {
     "headerDevices": "Geräte",
+    "helpTimeoutRetries": "Standardmäßig deaktiviert. Wert und Zeitstempel bleiben gleich. Bei einem Konflikt nach Timeout muss der Zählerstand in Energy Tracker geprüft werden.",
     "infoIntro": "Erstellen Sie zunächst ein persönliches Zugriffstoken unter https://www.energy-tracker.best-ios-apps.de. Danach können Sie Ihre Standardmessgeräte abrufen, um die jeweiligen Geräte-IDs zu erhalten. Die genaue Vorgehensweise ist in der API-Dokumentation beschrieben.",
     "labelAllowRounding": "Rundung erlauben",
     "labelBearerToken": "Personal Access Token",
     "labelDeviceId": "Energy Tracker Geräte-ID",
-    "labelSourceState": "Datenpunkt-ID (State)",
-    "labelTimeoutRetries": "Wiederholungen nach Timeout (0–2)",
     "labelRetryDelay": "Wartezeit vor Wiederholung (Sekunden)",
-    "helpTimeoutRetries": "Standardmäßig deaktiviert. Wert und Zeitstempel bleiben gleich. Bei einem Konflikt nach Timeout muss der Zählerstand in Energy Tracker geprüft werden."
+    "labelSourceState": "Datenpunkt-ID (State)",
+    "labelTimeoutRetries": "Wiederholungen nach Timeout (0–2)"
 }

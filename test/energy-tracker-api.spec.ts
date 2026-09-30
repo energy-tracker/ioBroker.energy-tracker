@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import 'sinon-chai';
 import { EnergyTrackerClient, TimeoutError, ConflictError, ValidationError } from '@energy-tracker/api-client';
-import { EnergyTrackerApi } from './energy-tracker-api';
+import { EnergyTrackerApi } from '../src/lib/energy-tracker-api';
 
 const stateBase = { ack: true, ts: 1, lc: 1, from: 'test.0' };
 const device: ioBroker.AdapterDevice = { deviceId: 'device-1', sourceState: 'meter.total', allowRounding: false };

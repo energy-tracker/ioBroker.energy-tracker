@@ -75,7 +75,7 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 
 - Updated ESLint to v9, fixed repository URL in package.json, and improved test coverage.
 
-[Older changes](CHANGELOG_OLD.md)
+[Older changes](https://github.com/energy-tracker/ioBroker.energy-tracker/blob/main/CHANGELOG_OLD.md)
 
 ## License
 

@@ -1,0 +1,11 @@
+{
+    "headerDevices": "Devices",
+    "helpTimeoutRetries": "Disabled by default. Reuses the same reading and timestamp. A conflict after a timeout requires checking the reading in Energy Tracker.",
+    "infoIntro": "First, create a personal access token at https://www.energy-tracker.best-ios-apps.de. Then, retrieve your standard devices to get their device IDs. The exact procedure is described in the API documentation.",
+    "labelAllowRounding": "Allow rounding",
+    "labelBearerToken": "Personal Access Token",
+    "labelDeviceId": "Energy Tracker Device ID",
+    "labelRetryDelay": "Retry delay (seconds)",
+    "labelSourceState": "Datapoint ID (state)",
+    "labelTimeoutRetries": "Retries after timeout (0–2)"
+}

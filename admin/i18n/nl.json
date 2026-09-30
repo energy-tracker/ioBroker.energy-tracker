@@ -1,11 +1,11 @@
 {
     "headerDevices": "Apparaten",
+    "helpTimeoutRetries": "Standaard uitgeschakeld. Gebruikt dezelfde waarde en tijdstempel. Controleer bij een conflict na een time-out de meterstand in Energy Tracker.",
     "infoIntro": "Maak eerst een persoonlijke toegang token op https://www.energy-tracker.best-ios-apps.de. Haal vervolgens uw standaardapparaten op om hun apparaat -ID's te krijgen. De exacte procedure wordt beschreven in de API -documentatie.",
     "labelAllowRounding": "Ronding toestaan",
     "labelBearerToken": "Persoonlijke toegang token",
     "labelDeviceId": "ENERGY TRACKER Device ID",
-    "labelSourceState": "Datapoint ID (status)",
-    "labelTimeoutRetries": "Nieuwe pogingen na een time-out (0–2)",
     "labelRetryDelay": "Wachttijd tussen pogingen (seconden)",
-    "helpTimeoutRetries": "Standaard uitgeschakeld. Gebruikt dezelfde waarde en tijdstempel. Controleer bij een conflict na een time-out de meterstand in Energy Tracker."
+    "labelSourceState": "Datapoint ID (status)",
+    "labelTimeoutRetries": "Nieuwe pogingen na een time-out (0–2)"
 }
