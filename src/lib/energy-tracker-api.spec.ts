@@ -36,7 +36,7 @@ describe('EnergyTrackerApi', () => {
         expect(JSON.parse(init.body as string)).to.deep.equal({ value: '123.456' });
     });
 
-    it('passes rounding to the server without rounding the value locally', async () => {
+    it('preserves six decimal places and delegates meter precision rounding to the server', async () => {
         adapter.getForeignStateAsync.resolves({ ...stateBase, val: '123.456789' });
         expect(await api.sendReading({ ...device, allowRounding: true })).to.equal(true);
         expect(String(fetchMock.firstCall.args[0])).to.include('allowRounding=true');
@@ -56,18 +56,26 @@ describe('EnergyTrackerApi', () => {
     });
 
     for (const [value, expected] of [
-        [0.1 + 0.2, '0.30000000000000004'],
-        [1e-7, '0.0000001'],
-        [Number.MIN_VALUE, `0.${'0'.repeat(323)}5`],
+        [0.1 + 0.2, '0.3'],
+        [1e-7, '0'],
+        [Number.MIN_VALUE, '0'],
+        [0.1234564, '0.123456'],
+        [0.1234565, '0.123457'],
+        ['0.9999995', '1'],
+        ['9999999999.1234564', '9999999999.123456'],
+        ['9999999999.1234565', '9999999999.123457'],
     ] as const) {
-        it(`serializes numeric ${value} as a plain decimal without rounding`, async () => {
-            adapter.getForeignStateAsync.resolves({ ...stateBase, val: value });
-            expect(await api.sendReading({ ...device, allowRounding: true })).to.equal(true);
-            expect(JSON.parse(fetchMock.firstCall.args[1].body).value).to.equal(expected);
-        });
+        for (const allowRounding of [true, false]) {
+            it(`limits ${value} to six decimals independently of meter rounding (${allowRounding})`, async () => {
+                adapter.getForeignStateAsync.resolves({ ...stateBase, val: value });
+                expect(await api.sendReading({ ...device, allowRounding })).to.equal(true);
+                expect(JSON.parse(fetchMock.firstCall.args[1].body).value).to.equal(expected);
+                expect(String(fetchMock.firstCall.args[0])).to.include(`allowRounding=${allowRounding}`);
+            });
+        }
     }
 
-    for (const value of [null, true, NaN, Infinity, -Infinity, '', 'bad', '1,23', '1e3']) {
+    for (const value of [null, true, NaN, Infinity, -Infinity, -1e-7, '-0.0000001', '', 'bad', '1,23', '1e3', '0xff']) {
         it(`does not send an invalid state value: ${String(value)}`, async () => {
             adapter.getForeignStateAsync.resolves({ ...stateBase, val: value });
             expect(await api.sendReading(device)).to.equal(false);

@@ -54,15 +54,22 @@ export class EnergyTrackerApi {
             if (
                 !state ||
                 (typeof state.val !== 'number' && typeof state.val !== 'string') ||
-                (typeof state.val === 'number' && !Number.isFinite(state.val))
+                (typeof state.val === 'number' && !Number.isFinite(state.val)) ||
+                (typeof state.val === 'string' && !/^-?\d+(?:\.\d+)?$/.test(state.val))
             ) {
                 this.adapter.log.warn(`${prefix} Invalid or missing numeric state`);
                 return false;
             }
 
+            const value = new Decimal(state.val);
+            if (value.isNegative() && !value.isZero()) {
+                this.adapter.log.warn(`${prefix} Reading must not be negative`);
+                return false;
+            }
+
             // Pin the timestamp when retrying: the server rejects duplicate readings at the same time.
             const reading = {
-                value: typeof state.val === 'number' ? new Decimal(state.val).toFixed() : state.val,
+                value: value.toDecimalPlaces(6, Decimal.ROUND_HALF_UP).toFixed(),
                 ...(this.retries > 0 ? { timestamp: new Date() } : {}),
             };
             for (;;) {

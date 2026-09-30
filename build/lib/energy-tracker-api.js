@@ -34,12 +34,18 @@ class EnergyTrackerApi {
             }
             if (!state ||
                 (typeof state.val !== 'number' && typeof state.val !== 'string') ||
-                (typeof state.val === 'number' && !Number.isFinite(state.val))) {
+                (typeof state.val === 'number' && !Number.isFinite(state.val)) ||
+                (typeof state.val === 'string' && !/^-?\d+(?:\.\d+)?$/.test(state.val))) {
                 this.adapter.log.warn(`${prefix} Invalid or missing numeric state`);
                 return false;
             }
+            const value = new decimal_js_1.default(state.val);
+            if (value.isNegative() && !value.isZero()) {
+                this.adapter.log.warn(`${prefix} Reading must not be negative`);
+                return false;
+            }
             const reading = {
-                value: typeof state.val === 'number' ? new decimal_js_1.default(state.val).toFixed() : state.val,
+                value: value.toDecimalPlaces(6, decimal_js_1.default.ROUND_HALF_UP).toFixed(),
                 ...(this.retries > 0 ? { timestamp: new Date() } : {}),
             };
             for (;;) {
