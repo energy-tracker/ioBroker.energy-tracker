@@ -4,5 +4,8 @@
     "labelAllowRounding": "Rundung erlauben",
     "labelBearerToken": "Personal Access Token",
     "labelDeviceId": "Energy Tracker Geräte-ID",
-    "labelSourceState": "Datenpunkt-ID (State)"
+    "labelSourceState": "Datenpunkt-ID (State)",
+    "labelTimeoutRetries": "Wiederholungen nach Timeout (0–2)",
+    "labelRetryDelay": "Wartezeit vor Wiederholung (Sekunden)",
+    "helpTimeoutRetries": "Standardmäßig deaktiviert. Wert und Zeitstempel bleiben gleich. Bei einem Konflikt nach Timeout muss der Zählerstand in Energy Tracker geprüft werden."
 }

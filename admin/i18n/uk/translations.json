@@ -4,5 +4,8 @@
     "labelAllowRounding": "Дозволити округлення",
     "labelBearerToken": "Особистий маркер доступу",
     "labelDeviceId": "Ідентифікатор пристрою відстеження енергії",
-    "labelSourceState": "Ідентифікатор DataPoint (стан)"
+    "labelSourceState": "Ідентифікатор DataPoint (стан)",
+    "labelTimeoutRetries": "Повторні спроби після тайм-ауту (0–2)",
+    "labelRetryDelay": "Затримка між спробами (секунди)",
+    "helpTimeoutRetries": "Типово вимкнено. Використовуються ті самі значення та час. У разі конфлікту після тайм-ауту перевірте показання в Energy Tracker."
 }

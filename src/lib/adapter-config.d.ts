@@ -8,6 +8,8 @@ declare global {
 
         interface AdapterConfig {
             bearerToken: string;
+            timeoutRetries: number;
+            retryDelay: number;
             devices: AdapterDevice[];
         }
     }
