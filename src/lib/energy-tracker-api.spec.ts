@@ -60,13 +60,13 @@ describe('EnergyTrackerApi', () => {
         [1e-7, '0'],
         [Number.MIN_VALUE, '0'],
         [0.1234564, '0.123456'],
-        [0.1234565, '0.123457'],
-        ['0.9999995', '1'],
+        [0.1234565, '0.123456'],
+        ['0.9999995', '0.999999'],
         ['9999999999.1234564', '9999999999.123456'],
-        ['9999999999.1234565', '9999999999.123457'],
+        ['9999999999.1234565', '9999999999.123456'],
     ] as const) {
         for (const allowRounding of [true, false]) {
-            it(`limits ${value} to six decimals independently of meter rounding (${allowRounding})`, async () => {
+            it(`truncates ${value} to six decimals independently of meter rounding (${allowRounding})`, async () => {
                 adapter.getForeignStateAsync.resolves({ ...stateBase, val: value });
                 expect(await api.sendReading({ ...device, allowRounding })).to.equal(true);
                 expect(JSON.parse(fetchMock.firstCall.args[1].body).value).to.equal(expected);

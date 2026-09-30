@@ -69,7 +69,7 @@ export class EnergyTrackerApi {
 
             // Pin the timestamp when retrying: the server rejects duplicate readings at the same time.
             const reading = {
-                value: value.toDecimalPlaces(6, Decimal.ROUND_HALF_UP).toFixed(),
+                value: value.toDecimalPlaces(6, Decimal.ROUND_DOWN).toFixed(),
                 ...(this.retries > 0 ? { timestamp: new Date() } : {}),
             };
             for (;;) {

@@ -35,7 +35,7 @@ The following fields must be configured in the adapter:
 - **Retries after timeout:** 0 (disabled), 1 or 2, with a configurable delay of 1–60 seconds. Requests still time out after 10 seconds. A conflict after a timeout requires checking the reading in Energy Tracker.
 
 Source states may contain numbers or plain decimal strings. Use decimal strings when exact decimal precision is required.
-Values are rounded half up to the API limit of six decimal places before sending; `allowRounding` controls additional server-side rounding to the meter's precision.
+Values are truncated to the API limit of six decimal places before sending; `allowRounding` controls server-side rounding to the meter's precision.
 
 **Additionally, you must create a schedule in ioBroker to trigger the adapter at regular intervals.**  
 Without a schedule, the adapter will not fetch or transmit any data automatically.

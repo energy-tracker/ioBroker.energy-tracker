@@ -45,7 +45,7 @@ class EnergyTrackerApi {
                 return false;
             }
             const reading = {
-                value: value.toDecimalPlaces(6, decimal_js_1.default.ROUND_HALF_UP).toFixed(),
+                value: value.toDecimalPlaces(6, decimal_js_1.default.ROUND_DOWN).toFixed(),
                 ...(this.retries > 0 ? { timestamp: new Date() } : {}),
             };
             for (;;) {
