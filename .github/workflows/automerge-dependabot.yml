@@ -4,6 +4,8 @@ on:
     pull_request_target:
         branches: [main]
         types: [opened, synchronize, reopened, ready_for_review]
+    pull_request_review:
+        types: [submitted]
 
 permissions:
     contents: read
@@ -17,42 +19,22 @@ jobs:
         if: >-
             github.event.pull_request.user.login == 'dependabot[bot]' &&
             github.event.pull_request.head.repo.full_name == github.repository &&
-            !github.event.pull_request.draft
+            github.event.pull_request.base.ref == 'main' &&
+            !github.event.pull_request.draft &&
+            (github.event_name == 'pull_request_target' || github.event.review.state == 'approved')
         runs-on: ubuntu-latest
-        timeout-minutes: 5
+        timeout-minutes: 65
         permissions:
             contents: write
             pull-requests: write
+            checks: read
 
-        # Never check out or execute PR code with this workflow's write token.
         steps:
-            - name: Read verified Dependabot metadata
-              id: metadata
-              uses: dependabot/fetch-metadata@v3
+            - name: Squash eligible Dependabot updates after CI
+              uses: iobroker-bot-orga/action-automerge-dependabot@v1
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
-
-            - name: Enable squash auto-merge for eligible npm updates
-              env:
-                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  PR_URL: ${{ github.event.pull_request.html_url }}
-                  PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-                  DEPENDENCIES: ${{ steps.metadata.outputs.updated-dependencies-json }}
-              run: |
-                  # Every dependency in a grouped update must satisfy the policy.
-                  if ! jq -e 'length > 0 and all(.[];
-                      .packageEcosystem == "npm_and_yarn" and (
-                          (.dependencyType == "direct:production" and
-                           .updateType == "version-update:semver-patch") or
-                          (.dependencyType == "direct:development" and
-                           (.updateType == "version-update:semver-patch" or
-                            .updateType == "version-update:semver-minor"))
-                      ))' <<< "$DEPENDENCIES" > /dev/null; then
-                      if [[ "$(gh pr view "$PR_URL" --json autoMergeRequest --jq '.autoMergeRequest != null')" == "true" ]]; then
-                          gh pr merge "$PR_URL" --disable-auto
-                      fi
-                      echo "Update requires manual merge; no auto-merge enabled."
-                      exit 0
-                  fi
-                  # GitHub waits for required CI checks and the existing review approval.
-                  gh pr merge "$PR_URL" --auto --squash --match-head-commit "$PR_HEAD_SHA"
+                  config-file-path: '.github/auto-merge.yml'
+                  merge-method: 'squash'
+                  wait-for-checks: 'true'
+                  max-wait-time: '3600'
