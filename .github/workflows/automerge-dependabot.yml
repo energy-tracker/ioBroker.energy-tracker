@@ -48,6 +48,9 @@ jobs:
                            (.updateType == "version-update:semver-patch" or
                             .updateType == "version-update:semver-minor"))
                       ))' <<< "$DEPENDENCIES" > /dev/null; then
+                      if [[ "$(gh pr view "$PR_URL" --json autoMergeRequest --jq '.autoMergeRequest != null')" == "true" ]]; then
+                          gh pr merge "$PR_URL" --disable-auto
+                      fi
                       echo "Update requires manual merge; no auto-merge enabled."
                       exit 0
                   fi
