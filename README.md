@@ -12,7 +12,7 @@ It periodically transfers values from configured ioBroker states using the publi
 
 ## Requirements
 
-Requires Node.js 22 or newer and ioBroker Admin 7.6.20 or newer.
+Requires Node.js 22 or newer, ioBroker js-controller 6.0.11 or newer and ioBroker Admin 7.6.20 or newer.
 
 1. **Register an account:**  
    👉 [Create your account](https://www.energy-tracker.best-ios-apps.de/en-US/register)
@@ -47,7 +47,9 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 
 ## Changelog
 
-### 0.4.0
+### 1.0.0
+
+**Before upgrading:** Node.js 22 or newer, ioBroker js-controller 6.0.11 or newer and ioBroker Admin 7.6.20 or newer are required.
 
 - Send readings through the Energy Tracker SDK and API v3.
 - Truncate readings to six decimal places before sending.
