@@ -4,5 +4,8 @@
     "labelAllowRounding": "Pozwól zaokrąglanie",
     "labelBearerToken": "Token osobisty",
     "labelDeviceId": "Identyfikator urządzenia do śledzenia energii",
-    "labelSourceState": "DataPoint ID (stan)"
+    "labelSourceState": "DataPoint ID (stan)",
+    "labelTimeoutRetries": "Ponowienia po przekroczeniu limitu czasu (0–2)",
+    "labelRetryDelay": "Odstęp między próbami (sekundy)",
+    "helpTimeoutRetries": "Domyślnie wyłączone. Używa tej samej wartości i znacznika czasu. W razie konfliktu po przekroczeniu limitu czasu sprawdź odczyt w Energy Tracker."
 }

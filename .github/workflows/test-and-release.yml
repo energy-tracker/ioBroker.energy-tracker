@@ -71,11 +71,12 @@ jobs:
         # Write permissions are required to create Github releases
         permissions:
             contents: write
+            id-token: write
 
         steps:
             - uses: ioBroker/testing-action-deploy@v1
               with:
                   node-version: '24.x'
                   build: true
-                  npm-token: ${{ secrets.NPM_TOKEN }}
+                  package-cache: 'false'
                   github-token: ${{ secrets.GITHUB_TOKEN }}

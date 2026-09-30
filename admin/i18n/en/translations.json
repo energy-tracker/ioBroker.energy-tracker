@@ -4,5 +4,8 @@
     "labelSourceState": "Datapoint ID (state)",
     "labelAllowRounding": "Allow rounding",
     "headerDevices": "Devices",
-    "infoIntro": "First, create a personal access token at https://www.energy-tracker.best-ios-apps.de. Then, retrieve your standard devices to get their device IDs. The exact procedure is described in the API documentation."
+    "infoIntro": "First, create a personal access token at https://www.energy-tracker.best-ios-apps.de. Then, retrieve your standard devices to get their device IDs. The exact procedure is described in the API documentation.",
+    "labelTimeoutRetries": "Retries after timeout (0–2)",
+    "labelRetryDelay": "Retry delay (seconds)",
+    "helpTimeoutRetries": "Disabled by default. Reuses the same reading and timestamp. A conflict after a timeout requires checking the reading in Energy Tracker."
 }

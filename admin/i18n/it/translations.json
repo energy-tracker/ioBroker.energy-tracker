@@ -4,5 +4,8 @@
     "labelAllowRounding": "Consenti arrotondamento",
     "labelBearerToken": "Token di accesso personale",
     "labelDeviceId": "ID dispositivo del tracker energetico",
-    "labelSourceState": "DataPoint ID (Stato)"
+    "labelSourceState": "DataPoint ID (Stato)",
+    "labelTimeoutRetries": "Tentativi dopo un timeout (0–2)",
+    "labelRetryDelay": "Attesa tra i tentativi (secondi)",
+    "helpTimeoutRetries": "Disattivato per impostazione predefinita. Riutilizza lo stesso valore e la stessa data. In caso di conflitto dopo un timeout, verificare la lettura in Energy Tracker."
 }

@@ -34,39 +34,56 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils = __importStar(require("@iobroker/adapter-core"));
+const api_client_1 = require("@energy-tracker/api-client");
 const energy_tracker_api_1 = require("./lib/energy-tracker-api");
-const axios_instance_1 = require("./lib/axios-instance");
 class EnergyTracker extends utils.Adapter {
-    api;
+    abortController = new AbortController();
     constructor(options = {}) {
         super({
             ...options,
             name: 'energy-tracker',
         });
         this.on('ready', this.onReady.bind(this));
+        this.on('unload', callback => {
+            this.abortController.abort();
+            callback();
+        });
     }
     async onReady() {
-        this.api = new energy_tracker_api_1.EnergyTrackerApi(this, axios_instance_1.energyTrackerAxios);
-        await this.setState('info.connection', { val: false, ack: true });
-        if (!this.config.bearerToken) {
-            this.terminate('Missing bearer token in adapter configuration – skipping adapter start.');
-            return;
-        }
-        if (!Array.isArray(this.config.devices) || this.config.devices.length === 0) {
-            this.terminate('No devices configured in adapter settings – skipping adapter start.');
-            return;
-        }
-        const sendReadingPromises = [];
-        for (const device of this.config.devices) {
-            if (!device.deviceId || !device.sourceState) {
-                this.log.warn(`[${device.sourceState}] Device config incomplete – skipping.`);
-                continue;
+        let terminationMessage = 'Terminating scheduled adapter instance.';
+        try {
+            await this.setStateAsync('info.connection', { val: false, ack: true });
+            if (this.abortController.signal.aborted) {
+                return;
             }
-            sendReadingPromises.push(this.api.sendReading(device));
+            if (!this.config.bearerToken) {
+                terminationMessage = 'Missing bearer token in adapter configuration – skipping adapter start.';
+                return;
+            }
+            if (!Array.isArray(this.config.devices) || this.config.devices.length === 0) {
+                terminationMessage = 'No devices configured in adapter settings – skipping adapter start.';
+                return;
+            }
+            const api = new energy_tracker_api_1.EnergyTrackerApi(this, new api_client_1.EnergyTrackerClient({ accessToken: this.config.bearerToken, timeout: 10 }), this.config.timeoutRetries ?? 0, this.config.retryDelay ?? 2);
+            const results = await Promise.all(this.config.devices.map(device => {
+                if (!device?.deviceId || !device.sourceState) {
+                    this.log.warn('Device config incomplete – skipping.');
+                    return Promise.resolve(false);
+                }
+                return api.sendReading(device, this.abortController.signal);
+            }));
+            if (!this.abortController.signal.aborted) {
+                await this.setStateAsync('info.connection', { val: results.every(Boolean), ack: true });
+            }
         }
-        await Promise.all(sendReadingPromises);
-        await this.setState('info.connection', { val: true, ack: true });
-        this.terminate('Terminating scheduled adapter instance.');
+        catch (err) {
+            this.log.error(`Unable to send readings: ${String(err)}`);
+        }
+        finally {
+            if (!this.abortController.signal.aborted) {
+                this.terminate(terminationMessage);
+            }
+        }
     }
 }
 if (require.main !== module) {
