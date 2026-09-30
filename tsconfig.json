@@ -13,6 +13,6 @@
         "inlineSourceMap": false
     },
 
-    "include": ["src/**/*.ts"],
+    "include": ["src/**/*.ts", "test/**/*.ts"],
     "exclude": ["build/**", "node_modules/**", "widgets/**"]
 }

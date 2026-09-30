@@ -29,7 +29,7 @@ describe('Scheduled adapter', () => {
         sendReading = sinon.stub().resolves(true);
         clientConstructor = sinon.stub().returns({});
         apiConstructor = sinon.stub().returns({ sendReading });
-        createAdapter = proxyquire.noCallThru().load('../main', {
+        createAdapter = proxyquire.noCallThru().load('../src/main', {
             '@iobroker/adapter-core': { Adapter: FakeAdapter },
             '@energy-tracker/api-client': { EnergyTrackerClient: clientConstructor },
             './lib/energy-tracker-api': { EnergyTrackerApi: apiConstructor },

@@ -1,11 +1,11 @@
 {
     "headerDevices": "Dispositifs",
+    "helpTimeoutRetries": "Désactivé par défaut. Réutilise la même valeur et le même horodatage. En cas de conflit après expiration du délai, vérifiez le relevé dans Energy Tracker.",
     "infoIntro": "Tout d'abord, créez un jeton d'accès personnel sur https://www.energy-tracker.best-ios-apps.de. Ensuite, récupérez vos appareils standard pour obtenir leurs ID d'appareil. La procédure exacte est décrite dans la documentation de l'API.",
     "labelAllowRounding": "Autoriser l'arrondi",
     "labelBearerToken": "Jeton d'accès personnel",
     "labelDeviceId": "ID de dispositif de tracker d'énergie",
-    "labelSourceState": "ID de point de données (état)",
-    "labelTimeoutRetries": "Tentatives après expiration du délai (0–2)",
     "labelRetryDelay": "Délai entre les tentatives (secondes)",
-    "helpTimeoutRetries": "Désactivé par défaut. Réutilise la même valeur et le même horodatage. En cas de conflit après expiration du délai, vérifiez le relevé dans Energy Tracker."
+    "labelSourceState": "ID de point de données (état)",
+    "labelTimeoutRetries": "Tentatives après expiration du délai (0–2)"
 }

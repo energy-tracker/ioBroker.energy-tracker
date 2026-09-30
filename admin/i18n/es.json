@@ -1,11 +1,11 @@
 {
     "headerDevices": "Dispositivos",
+    "helpTimeoutRetries": "Desactivado por defecto. Reutiliza el mismo valor y fecha. Un conflicto tras agotar el tiempo de espera requiere comprobar la lectura en Energy Tracker.",
     "infoIntro": "Primero, cree un token de acceso personal en https://www.energy-tracker.best-ios-apps.de. Luego, recupere sus dispositivos estándar para obtener sus ID de dispositivo. El procedimiento exacto se describe en la documentación de API.",
     "labelAllowRounding": "Permitir redondeo",
     "labelBearerToken": "Token de acceso personal",
     "labelDeviceId": "ID de dispositivo de rastreador de energía",
-    "labelSourceState": "DataPoint ID (estado)",
-    "labelTimeoutRetries": "Reintentos tras tiempo de espera agotado (0–2)",
     "labelRetryDelay": "Espera entre reintentos (segundos)",
-    "helpTimeoutRetries": "Desactivado por defecto. Reutiliza el mismo valor y fecha. Un conflicto tras agotar el tiempo de espera requiere comprobar la lectura en Energy Tracker."
+    "labelSourceState": "DataPoint ID (estado)",
+    "labelTimeoutRetries": "Reintentos tras tiempo de espera agotado (0–2)"
 }
