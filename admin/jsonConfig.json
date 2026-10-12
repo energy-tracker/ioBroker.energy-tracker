@@ -24,6 +24,19 @@
             "lg": 6,
             "xl": 6
         },
+        "tokenInfo": {
+            "type": "custom",
+            "url": "custom/customComponents.js",
+            "name": "EnergyTrackerTokenInfo/Components/TokenInfo",
+            "guiApi": 2,
+            "bundlerType": "module",
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+        },
         "timeoutRetries": {
             "type": "number",
             "label": "labelTimeoutRetries",

@@ -7,5 +7,20 @@
     "labelDeviceId": "Energy Tracker Device ID",
     "labelRetryDelay": "Retry delay (seconds)",
     "labelSourceState": "Datapoint ID (state)",
-    "labelTimeoutRetries": "Retries after timeout (0–2)"
+    "labelTimeoutRetries": "Retries after timeout (0–2)",
+    "infoTokenStatus": "Last known status",
+    "infoTokenExpiry": "Valid until (UTC)",
+    "infoTokenPermissions": "Granted permissions",
+    "labelTokenRecheck": "Check again",
+    "helpTokenRecheck": "Save changes first. Checks only the saved token immediately, without sending readings. API waiting times are respected.",
+    "tokenUnknown": "Unknown",
+    "tokenValid": "Valid (last checked)",
+    "tokenInvalid": "Invalid or expired",
+    "tokenBlocked": "Account blocked",
+    "tokenNoExpiry": "No expiry date",
+    "tokenNoPermissions": "No permissions",
+    "tokenCheckRunning": "Checking…",
+    "tokenCheckSaveFirst": "Save changes before checking the token.",
+    "tokenCheckWait": "Next check possible after %s.",
+    "tokenCheckUnavailable": "The check could not be completed. Check API availability and try again after the waiting time."
 }

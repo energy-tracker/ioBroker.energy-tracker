@@ -7,5 +7,20 @@
     "labelDeviceId": "Energy Tracker Geräte-ID",
     "labelRetryDelay": "Wartezeit vor Wiederholung (Sekunden)",
     "labelSourceState": "Datenpunkt-ID (State)",
-    "labelTimeoutRetries": "Wiederholungen nach Timeout (0–2)"
+    "labelTimeoutRetries": "Wiederholungen nach Timeout (0–2)",
+    "infoTokenStatus": "Zuletzt bekannter Status",
+    "infoTokenExpiry": "Gültig bis (UTC)",
+    "infoTokenPermissions": "Enthaltene Berechtigungen",
+    "labelTokenRecheck": "Erneut prüfen",
+    "helpTokenRecheck": "Änderungen zuerst speichern. Prüft sofort nur den gespeicherten Token, ohne Zählerstände zu senden. API-Wartezeiten werden eingehalten.",
+    "tokenUnknown": "Unbekannt",
+    "tokenValid": "Gültig (zuletzt geprüft)",
+    "tokenInvalid": "Ungültig oder abgelaufen",
+    "tokenBlocked": "Konto gesperrt",
+    "tokenNoExpiry": "Kein Ablaufdatum",
+    "tokenNoPermissions": "Keine Berechtigungen",
+    "tokenCheckRunning": "Prüfung läuft…",
+    "tokenCheckSaveFirst": "Änderungen vor der Token-Prüfung speichern.",
+    "tokenCheckWait": "Erneute Prüfung möglich ab %s.",
+    "tokenCheckUnavailable": "Die Prüfung konnte nicht abgeschlossen werden. API-Verfügbarkeit prüfen und nach der Wartezeit erneut versuchen."
 }

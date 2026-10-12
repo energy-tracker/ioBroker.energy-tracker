@@ -7,5 +7,20 @@
     "labelDeviceId": "Identyfikator urządzenia do śledzenia energii",
     "labelRetryDelay": "Odstęp między próbami (sekundy)",
     "labelSourceState": "DataPoint ID (stan)",
-    "labelTimeoutRetries": "Ponowienia po przekroczeniu limitu czasu (0–2)"
+    "labelTimeoutRetries": "Ponowienia po przekroczeniu limitu czasu (0–2)",
+    "infoTokenStatus": "Ostatni znany status",
+    "infoTokenExpiry": "Ważny do (UTC)",
+    "infoTokenPermissions": "Przyznane uprawnienia",
+    "labelTokenRecheck": "Sprawdź ponownie",
+    "helpTokenRecheck": "Najpierw zapisz zmiany. Natychmiast sprawdza tylko zapisany token, bez wysyłania odczytów. Przestrzega przerw API.",
+    "tokenUnknown": "Nieznany",
+    "tokenValid": "Ważny (ostatnie sprawdzenie)",
+    "tokenInvalid": "Nieważny lub wygasły",
+    "tokenBlocked": "Konto zablokowane",
+    "tokenNoExpiry": "Bez daty wygaśnięcia",
+    "tokenNoPermissions": "Brak uprawnień",
+    "tokenCheckRunning": "Sprawdzanie…",
+    "tokenCheckSaveFirst": "Zapisz zmiany przed sprawdzeniem tokenu.",
+    "tokenCheckWait": "Ponowne sprawdzenie możliwe po %s.",
+    "tokenCheckUnavailable": "Nie można zakończyć sprawdzania. Sprawdź dostępność API i spróbuj ponownie po czasie oczekiwania."
 }

@@ -7,5 +7,20 @@
     "labelDeviceId": "Идентификатор устройства трекера энергии",
     "labelRetryDelay": "Задержка между попытками (секунды)",
     "labelSourceState": "Идентификатор DataPoint (состояние)",
-    "labelTimeoutRetries": "Повторные попытки после тайм-аута (0–2)"
+    "labelTimeoutRetries": "Повторные попытки после тайм-аута (0–2)",
+    "infoTokenStatus": "Последний известный статус",
+    "infoTokenExpiry": "Действителен до (UTC)",
+    "infoTokenPermissions": "Предоставленные права",
+    "labelTokenRecheck": "Проверить снова",
+    "helpTokenRecheck": "Сначала сохраните изменения. Немедленно проверяет только сохранённый токен, не отправляя показания. Паузы API соблюдаются.",
+    "tokenUnknown": "Неизвестно",
+    "tokenValid": "Действителен (последняя проверка)",
+    "tokenInvalid": "Недействителен или истёк",
+    "tokenBlocked": "Учётная запись заблокирована",
+    "tokenNoExpiry": "Без срока действия",
+    "tokenNoPermissions": "Нет прав",
+    "tokenCheckRunning": "Проверка…",
+    "tokenCheckSaveFirst": "Сохраните изменения перед проверкой токена.",
+    "tokenCheckWait": "Следующая проверка возможна после %s.",
+    "tokenCheckUnavailable": "Проверка не завершена. Проверьте доступность API и повторите после периода ожидания."
 }

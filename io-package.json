@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "energy-tracker",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "news": {
+            "1.1.0": {
+                "en": "Add token information with status, validity and permissions, plus immediate token-only checks respecting API waiting times.",
+                "de": "Token-Informationsbereich mit Status, Gültigkeit und Berechtigungen sowie sofortige reine Token-Prüfungen unter Beachtung der API-Wartezeiten ergänzen.",
+                "ru": "Добавлены сохранённый статус токена, разрешения и срок действия, ручная проверка и сохраняемые паузы для конечной точки статуса.",
+                "pt": "Adiciona estado do token em cache, permissões e validade, verificações manuais e pausas persistentes do endpoint de estado.",
+                "nl": "Voegt opgeslagen tokenstatus, rechten en vervaldatum, handmatige controles en blijvende wachttijden voor het statusendpoint toe.",
+                "fr": "Ajoute le statut du jeton en cache, les permissions et l’expiration, les vérifications manuelles et les délais persistants du point de terminaison de statut.",
+                "it": "Aggiunge stato del token memorizzato, permessi e scadenza, controlli manuali e pause persistenti per l’endpoint di stato.",
+                "es": "Añade estado del token en caché, permisos y caducidad, comprobaciones manuales y pausas persistentes del endpoint de estado.",
+                "pl": "Dodaje zapisany status tokenu, uprawnienia i datę wygaśnięcia, ręczne kontrole oraz trwałe przerwy dla punktu końcowego statusu.",
+                "uk": "Додано збережений статус токена, дозволи й термін дії, ручну перевірку та збережені паузи для кінцевої точки статусу.",
+                "zh-cn": "新增缓存的令牌状态、权限和到期时间、手动重新检查以及状态端点的持久等待时间。"
+            },
             "1.0.0": {
                 "en": "Use the Energy Tracker SDK and API v3, truncate readings to six decimal places, fix connection status and add optional timeout retries. Requires Node.js 22 or newer.",
                 "de": "Energy Tracker SDK und API v3 verwenden, Messwerte auf sechs Nachkommastellen abschneiden, Verbindungsstatus korrigieren und optionale Wiederholungen bei Zeitüberschreitung ergänzen. Erfordert Node.js 22 oder neuer.",
@@ -193,6 +206,40 @@
                 "read": true,
                 "write": false,
                 "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.token",
+            "type": "channel",
+            "common": {
+                "name": "Token information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.token.cache",
+            "type": "state",
+            "common": {
+                "name": "Last token check (SDK metadata and token hash)",
+                "type": "string",
+                "role": "json",
+                "read": true,
+                "write": false,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.token.nextAllowedAt",
+            "type": "state",
+            "common": {
+                "name": "Next permitted token check",
+                "type": "number",
+                "role": "date",
+                "read": true,
+                "write": false,
+                "def": 0
             },
             "native": {}
         }

@@ -7,5 +7,20 @@
     "labelDeviceId": "能量跟踪器设备ID",
     "labelRetryDelay": "重试间隔（秒）",
     "labelSourceState": "数据点ID（状态）",
-    "labelTimeoutRetries": "超时后的重试次数（0–2）"
+    "labelTimeoutRetries": "超时后的重试次数（0–2）",
+    "infoTokenStatus": "上次已知状态",
+    "infoTokenExpiry": "有效期至（UTC）",
+    "infoTokenPermissions": "已授予的权限",
+    "labelTokenRecheck": "重新检查",
+    "helpTokenRecheck": "请先保存更改。立即仅检查已保存的令牌，不发送表读数，并遵守 API 等待时间。",
+    "tokenUnknown": "未知",
+    "tokenValid": "有效（上次检查结果）",
+    "tokenInvalid": "无效或已过期",
+    "tokenBlocked": "账户已被封锁",
+    "tokenNoExpiry": "无到期日期",
+    "tokenNoPermissions": "无权限",
+    "tokenCheckRunning": "正在检查…",
+    "tokenCheckSaveFirst": "检查令牌前请保存更改。",
+    "tokenCheckWait": "下次可检查时间：%s。",
+    "tokenCheckUnavailable": "无法完成检查。请检查 API 可用性，并在等待时间结束后重试。"
 }

@@ -7,5 +7,20 @@
     "labelDeviceId": "ID de dispositif de tracker d'énergie",
     "labelRetryDelay": "Délai entre les tentatives (secondes)",
     "labelSourceState": "ID de point de données (état)",
-    "labelTimeoutRetries": "Tentatives après expiration du délai (0–2)"
+    "labelTimeoutRetries": "Tentatives après expiration du délai (0–2)",
+    "infoTokenStatus": "Dernier statut connu",
+    "infoTokenExpiry": "Valide jusqu’au (UTC)",
+    "infoTokenPermissions": "Autorisations accordées",
+    "labelTokenRecheck": "Vérifier à nouveau",
+    "helpTokenRecheck": "Enregistrez d’abord. Vérifie immédiatement uniquement le jeton enregistré, sans envoyer de relevés. Respecte les délais de l’API.",
+    "tokenUnknown": "Inconnu",
+    "tokenValid": "Valide (dernière vérification)",
+    "tokenInvalid": "Invalide ou expiré",
+    "tokenBlocked": "Compte bloqué",
+    "tokenNoExpiry": "Sans date d’expiration",
+    "tokenNoPermissions": "Aucune autorisation",
+    "tokenCheckRunning": "Vérification…",
+    "tokenCheckSaveFirst": "Enregistrez les modifications avant de vérifier le jeton.",
+    "tokenCheckWait": "Nouvelle vérification possible après %s.",
+    "tokenCheckUnavailable": "La vérification n’a pas pu être terminée. Vérifiez la disponibilité de l’API et réessayez après le délai d’attente."
 }

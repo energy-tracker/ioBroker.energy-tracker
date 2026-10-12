@@ -37,8 +37,14 @@ The following fields must be configured in the adapter:
 Source states may contain numbers or plain decimal strings. Use decimal strings when exact decimal precision is required.
 Values are truncated to the API limit of six decimal places before sending; `allowRounding` controls server-side rounding to the meter's precision.
 
-**Additionally, you must create a schedule in ioBroker to trigger the adapter at regular intervals.**  
+**Additionally, you must create a schedule in ioBroker to trigger the adapter at regular intervals.**
 Without a schedule, the adapter will not fetch or transmit any data automatically.
+
+## Token information
+
+Save the configuration and select **Check again** to inspect the saved token immediately. The information area shows its last known status, validity and granted API scopes. The check works while the scheduled instance is stopped or disabled and does not start the adapter or send readings. Token checks run only on request.
+
+Results and API waiting times are stored across configuration reloads. Information for a different token is hidden. Successful checks are spaced at least 61 seconds apart; failed checks wait at least five minutes and respect a longer `Retry-After`. The button becomes available after the wait without automatically querying the API. Browser access to the CORS-enabled token-status endpoint is required.
 
 ## Security
 
@@ -46,6 +52,11 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 - Data is only **sent** – no readings are retrieved.
 
 ## Changelog
+
+### 1.1.0
+
+- Show token status, validity and permissions with an immediate token-only check button.
+- Persist the last result and respect API waiting times without periodic status queries.
 
 ### 1.0.0
 

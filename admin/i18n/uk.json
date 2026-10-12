@@ -7,5 +7,20 @@
     "labelDeviceId": "Ідентифікатор пристрою відстеження енергії",
     "labelRetryDelay": "Затримка між спробами (секунди)",
     "labelSourceState": "Ідентифікатор DataPoint (стан)",
-    "labelTimeoutRetries": "Повторні спроби після тайм-ауту (0–2)"
+    "labelTimeoutRetries": "Повторні спроби після тайм-ауту (0–2)",
+    "infoTokenStatus": "Останній відомий статус",
+    "infoTokenExpiry": "Дійсний до (UTC)",
+    "infoTokenPermissions": "Надані права",
+    "labelTokenRecheck": "Перевірити знову",
+    "helpTokenRecheck": "Спочатку збережіть зміни. Негайно перевіряє лише збережений токен, не надсилаючи показань. Паузи API дотримуються.",
+    "tokenUnknown": "Невідомо",
+    "tokenValid": "Дійсний (остання перевірка)",
+    "tokenInvalid": "Недійсний або прострочений",
+    "tokenBlocked": "Обліковий запис заблоковано",
+    "tokenNoExpiry": "Без дати закінчення",
+    "tokenNoPermissions": "Немає прав",
+    "tokenCheckRunning": "Перевірка…",
+    "tokenCheckSaveFirst": "Збережіть зміни перед перевіркою токена.",
+    "tokenCheckWait": "Повторна перевірка можлива після %s.",
+    "tokenCheckUnavailable": "Перевірку не завершено. Перевірте доступність API та повторіть після періоду очікування."
 }

@@ -7,5 +7,20 @@
     "labelDeviceId": "ENERGY TRACKER Device ID",
     "labelRetryDelay": "Wachttijd tussen pogingen (seconden)",
     "labelSourceState": "Datapoint ID (status)",
-    "labelTimeoutRetries": "Nieuwe pogingen na een time-out (0–2)"
+    "labelTimeoutRetries": "Nieuwe pogingen na een time-out (0–2)",
+    "infoTokenStatus": "Laatst bekende status",
+    "infoTokenExpiry": "Geldig tot (UTC)",
+    "infoTokenPermissions": "Toegekende rechten",
+    "labelTokenRecheck": "Opnieuw controleren",
+    "helpTokenRecheck": "Sla eerst wijzigingen op. Controleert direct alleen het opgeslagen token, zonder meterstanden te versturen. API-wachttijden worden gerespecteerd.",
+    "tokenUnknown": "Onbekend",
+    "tokenValid": "Geldig (laatste controle)",
+    "tokenInvalid": "Ongeldig of verlopen",
+    "tokenBlocked": "Account geblokkeerd",
+    "tokenNoExpiry": "Geen vervaldatum",
+    "tokenNoPermissions": "Geen rechten",
+    "tokenCheckRunning": "Controleren…",
+    "tokenCheckSaveFirst": "Sla wijzigingen op voordat u het token controleert.",
+    "tokenCheckWait": "Opnieuw controleren mogelijk na %s.",
+    "tokenCheckUnavailable": "De controle kon niet worden voltooid. Controleer de API-beschikbaarheid en probeer na de wachttijd opnieuw."
 }

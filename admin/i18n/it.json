@@ -7,5 +7,20 @@
     "labelDeviceId": "ID dispositivo del tracker energetico",
     "labelRetryDelay": "Attesa tra i tentativi (secondi)",
     "labelSourceState": "DataPoint ID (Stato)",
-    "labelTimeoutRetries": "Tentativi dopo un timeout (0–2)"
+    "labelTimeoutRetries": "Tentativi dopo un timeout (0–2)",
+    "infoTokenStatus": "Ultimo stato noto",
+    "infoTokenExpiry": "Valido fino al (UTC)",
+    "infoTokenPermissions": "Permessi concessi",
+    "labelTokenRecheck": "Verifica di nuovo",
+    "helpTokenRecheck": "Salvare prima. Verifica immediatamente solo il token salvato, senza inviare letture. Rispetta le pause API.",
+    "tokenUnknown": "Sconosciuto",
+    "tokenValid": "Valido (ultima verifica)",
+    "tokenInvalid": "Non valido o scaduto",
+    "tokenBlocked": "Account bloccato",
+    "tokenNoExpiry": "Nessuna data di scadenza",
+    "tokenNoPermissions": "Nessun permesso",
+    "tokenCheckRunning": "Verifica in corso…",
+    "tokenCheckSaveFirst": "Salvare le modifiche prima di verificare il token.",
+    "tokenCheckWait": "Nuova verifica possibile dopo %s.",
+    "tokenCheckUnavailable": "Impossibile completare la verifica. Controllare la disponibilità dell’API e riprovare dopo l’attesa."
 }
