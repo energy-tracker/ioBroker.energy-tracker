@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "energy-tracker",
-        "version": "1.0.0",
+        "version": "2.0.0",
         "news": {
+            "2.0.0": {
+                "en": "Switch to continuous operation, migrate existing reading schedules and add optional extrapolations with configurable polling and API waiting times.",
+                "de": "Auf dauerhaften Betrieb umstellen, bestehende Sendezeitpläne migrieren und optionalen Abruf von Hochrechnungen mit einstellbarem Polling und API-Wartezeiten ergänzen.",
+                "ru": "Переход на непрерывную работу, перенос существующих расписаний и необязательное получение прогнозов с настройкой опроса и пауз API.",
+                "pt": "Passa a funcionamento contínuo, migra os horários existentes e adiciona projeções opcionais com consulta configurável e pausas da API.",
+                "nl": "Schakelt over op continu gebruik, migreert bestaande verzendschema’s en voegt optionele prognoses met instelbare polling en API-wachttijden toe.",
+                "fr": "Passe au fonctionnement continu, migre les horaires existants et ajoute des projections facultatives avec interrogation configurable et délais API.",
+                "it": "Passa al funzionamento continuo, migra i programmi esistenti e aggiunge proiezioni opzionali con interrogazione configurabile e pause API.",
+                "es": "Cambia al funcionamiento continuo, migra los horarios existentes y añade proyecciones opcionales con consultas configurables y pausas de la API.",
+                "pl": "Przechodzi na pracę ciągłą, migruje istniejące harmonogramy i dodaje opcjonalne prognozy z konfigurowalnym odpytywaniem i przerwami API.",
+                "uk": "Перехід на постійну роботу, перенесення наявних розкладів і необов’язкове отримання прогнозів з налаштуванням опитування й пауз API.",
+                "zh-cn": "改为持续运行，迁移现有发送计划，并新增可选的预测查询，支持可配置轮询和 API 等待时间。"
+            },
             "1.0.0": {
                 "en": "Use the Energy Tracker SDK and API v3, truncate readings to six decimal places, fix connection status and add optional timeout retries. Requires Node.js 22 or newer.",
                 "de": "Energy Tracker SDK und API v3 verwenden, Messwerte auf sechs Nachkommastellen abschneiden, Verbindungsstatus korrigieren und optionale Wiederholungen bei Zeitüberschreitung ergänzen. Erfordert Node.js 22 oder neuer.",
@@ -109,17 +122,17 @@
             "zh-cn": "能量跟踪器"
         },
         "desc": {
-            "en": "Adapter for sending meter readings to the Energy Tracker platform.",
-            "de": "Adapter zum Senden von Messwerten an die Energy Tracker Plattform.",
-            "ru": "Адаптер для отправки показаний счетчиков на платформу трекера.",
-            "pt": "Adaptador para enviar leituras do medidor para a plataforma de rastreador de energia.",
-            "nl": "Adapter voor het verzenden van meter meters naar het Energy Tracker -platform.",
-            "fr": "Adaptateur pour l'envoi de lectures des compteurs à la plate-forme d'énergie.",
-            "it": "Adattatore per l'invio di letture del contatore alla piattaforma Energy Tracker.",
-            "es": "Adaptador para enviar lecturas del medidor a la plataforma de rastreador de energía.",
-            "pl": "Adapter do wysyłania odczytów liczników do platformy Energy Tracker.",
-            "uk": "Адаптер для надсилання показань лічильника на платформу Tracker Energy.",
-            "zh-cn": "用于将仪表读数发送到能量跟踪器平台的适配器。"
+            "en": "Send meter readings and retrieve extrapolations from Energy Tracker.",
+            "de": "Zählerstände an Energy Tracker senden und Hochrechnungen abrufen.",
+            "ru": "Отправка показаний в Energy Tracker и получение прогнозов.",
+            "pt": "Envia leituras para Energy Tracker e consulta projeções.",
+            "nl": "Verzendt meterstanden naar Energy Tracker en haalt prognoses op.",
+            "fr": "Envoie des relevés à Energy Tracker et récupère les projections.",
+            "it": "Invia letture a Energy Tracker e recupera proiezioni.",
+            "es": "Envía lecturas a Energy Tracker y consulta proyecciones.",
+            "pl": "Wysyła odczyty do Energy Tracker i pobiera prognozy.",
+            "uk": "Надсилає показники до Energy Tracker й отримує прогнози.",
+            "zh-cn": "向 Energy Tracker 发送读数，并获取预测。"
         },
         "authors": [
             {
@@ -139,8 +152,8 @@
         "readme": "https://github.com/energy-tracker/ioBroker.energy-tracker/blob/main/README.md",
         "loglevel": "info",
         "tier": 3,
-        "mode": "schedule",
-        "schedule": "0 0 * * 0",
+        "mode": "daemon",
+        "allowInit": true,
         "type": "iot-systems",
         "compact": true,
         "connectionType": "cloud",
@@ -157,19 +170,20 @@
             {
                 "admin": ">=7.6.20"
             }
-        ]
+        ],
+        "availableModes": ["daemon"],
+        "install": true,
+        "stopBeforeUpdate": true,
+        "messagebox": true
     },
     "native": {
         "bearerToken": "",
-        "timeoutRetries": 0,
-        "retryDelay": 2,
-        "devices": [
-            {
-                "deviceId": "",
-                "sourceState": "",
-                "allowRounding": true
-            }
-        ]
+        "devices": [],
+        "readDevices": [],
+        "timeZone": "",
+        "pollInterval": 60,
+        "sendEnabled": false,
+        "sendSchedule": "0 0 * * 0"
     },
     "encryptedNative": ["bearerToken"],
     "protectedNative": ["bearerToken"],
@@ -193,6 +207,112 @@
                 "read": true,
                 "write": false,
                 "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.tokenCheckNextRequestAt",
+            "type": "state",
+            "common": {
+                "name": "Internal token check request allowance",
+                "type": "number",
+                "role": "date",
+                "read": false,
+                "write": false,
+                "def": 0
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.polling",
+            "type": "channel",
+            "common": {
+                "name": "Calculation polling"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.polling.effectiveInterval",
+            "type": "state",
+            "common": {
+                "name": "Effective pause between completed polling cycles",
+                "type": "number",
+                "role": "value.interval",
+                "read": true,
+                "write": false,
+                "def": 0,
+                "unit": "s"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.polling.nextAllowedAt",
+            "type": "state",
+            "common": {
+                "name": "API cooldown until this time",
+                "type": "number",
+                "role": "date",
+                "read": true,
+                "write": false,
+                "def": 0
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.polling.nextRequestAt",
+            "type": "state",
+            "common": {
+                "name": "Internal data request spacing",
+                "type": "number",
+                "role": "date",
+                "read": false,
+                "write": false,
+                "def": 0
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.sending",
+            "type": "channel",
+            "common": {
+                "name": "Scheduled reading submission"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.sending.available",
+            "type": "state",
+            "common": {
+                "name": "Last reading submission succeeded",
+                "type": "boolean",
+                "role": "indicator.reachable",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.sending.lastRun",
+            "type": "state",
+            "common": {
+                "name": "Last reading submission batch",
+                "type": "number",
+                "role": "date",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.sending.nextRun",
+            "type": "state",
+            "common": {
+                "name": "Next scheduled reading submission",
+                "type": "number",
+                "role": "date",
+                "read": true,
+                "write": false
             },
             "native": {}
         }

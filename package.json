@@ -1,7 +1,7 @@
 {
     "name": "iobroker.energy-tracker",
-    "version": "1.0.0",
-    "description": "Adapter for sending meter readings with the Energy Tracker platform.",
+    "version": "2.0.0",
+    "description": "Send meter readings and retrieve extrapolations from Energy Tracker.",
     "author": "energy-tracker <support@energy-tracker.app>",
     "contributors": [
         "energy-tracker <support@energy-tracker.app>"
@@ -23,9 +23,10 @@
         "node": ">=22"
     },
     "dependencies": {
-        "@energy-tracker/api-client": "^2.0.0",
+        "@energy-tracker/api-client": "^2.1.0",
         "@iobroker/adapter-core": "^3.4.3",
-        "decimal.js": "^10.6.0"
+        "decimal.js": "^10.6.0",
+        "node-schedule": "^2.1.1"
     },
     "devDependencies": {
         "@alcalzone/release-script": "^5.2.1",
@@ -44,7 +45,8 @@
         "rimraf": "^6.1.2",
         "source-map-support": "^0.5.21",
         "ts-node": "^10.9.2",
-        "typescript": "~5.8.3"
+        "typescript": "~5.8.3",
+        "@types/node-schedule": "^2.1.8"
     },
     "main": "build/main.js",
     "files": [
@@ -57,16 +59,16 @@
     ],
     "scripts": {
         "prebuild": "rimraf ./build",
-        "build": "tsc -p tsconfig.build.json",
+        "build": "npm run build:ts && build-adapter react --config scripts/build-admin.json",
         "build:ts": "tsc -p tsconfig.build.json",
         "test": "npm run test:ts && npm run test:package",
         "test:ts": "mocha --config test/mocharc.custom.json \"test/**/*.spec.ts\"",
         "test:package": "mocha test/package --exit",
         "test:integration": "mocha test/integration --exit",
-        "check": "tsc --noEmit",
-        "format": "prettier --ignore-path .gitignore --write . \"!build/**\"",
-        "format:check": "prettier --ignore-path .gitignore --check . \"!build/**\"",
-        "lint": "eslint --ext .ts src/ \"test/**/*.ts\"",
+        "check": "tsc --noEmit && tsc -p src-admin/tsconfig.json",
+        "format": "prettier --ignore-path .gitignore --write . \"!build/**\" \"!admin/custom/**\"",
+        "format:check": "prettier --ignore-path .gitignore --check . \"!build/**\" \"!admin/custom/**\"",
+        "lint": "eslint --ext .ts src/ src-admin/ \"test/**/*.ts\"",
         "translate": "translate-adapter",
         "release": "release-script",
         "release:patch": "release-script patch --yes",

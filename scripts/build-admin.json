@@ -1,0 +1,8 @@
+{
+    "reactRootDir": "src-admin",
+    "reactOutDir": "../admin/custom",
+    "reactPattern": "customComponents.ts",
+    "reactFormat": "esm",
+    "reactCompileTarget": "es2022",
+    "reactRaw": { "sourcemap": false }
+}
