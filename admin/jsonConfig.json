@@ -1,21 +1,59 @@
 {
     "i18n": true,
     "type": "panel",
+    "innerStyle": {
+        "& .MuiCard-root": {
+            "marginBottom": 2
+        },
+        "& .MuiCard-root > .MuiPaper-root": {
+            "marginBottom": "0 !important"
+        },
+        "& .MuiCard-root .MuiCollapse-root .MuiTableCell-root:first-child:not(:last-child)": {
+            "display": "none"
+        },
+        "& .MuiCard-root .MuiCollapse-root .MuiTableCell-root:last-child": {
+            "width": "100%"
+        },
+        "& .MuiFormHelperText-root": {
+            "overflowWrap": "anywhere"
+        }
+    },
     "items": {
-        "infoText": {
-            "type": "staticText",
-            "label": "infoIntro",
+        "_layout": {
+            "type": "custom",
+            "url": "custom/customComponents.js",
+            "name": "EnergyTrackerAdmin/Components/AdminLayout",
+            "guiApi": 2,
+            "bundlerType": "module",
+            "style": {
+                "display": "none"
+            }
+        },
+        "_intro": {
+            "type": "panel",
+            "innerStyle": {
+                "paddingRight": {
+                    "xs": 0,
+                    "sm": "96px"
+                }
+            },
             "newLine": true,
             "xs": 12,
             "sm": 12,
             "md": 12,
             "lg": 12,
-            "xl": 12
+            "xl": 12,
+            "items": {
+                "_text": {
+                    "type": "staticText",
+                    "label": "infoIntro",
+                    "xs": 12
+                }
+            }
         },
         "bearerToken": {
-            "type": "password",
+            "type": "text",
             "label": "labelBearerToken",
-            "encrypted": true,
             "allowSaveWithError": false,
             "newLine": true,
             "xs": 12,
@@ -24,37 +62,51 @@
             "lg": 6,
             "xl": 6
         },
-        "timeoutRetries": {
-            "type": "number",
-            "label": "labelTimeoutRetries",
-            "help": "helpTimeoutRetries",
-            "min": 0,
-            "max": 2,
-            "step": 1,
-            "default": 0,
-            "xs": 12,
-            "sm": 6,
-            "md": 6,
-            "lg": 6,
-            "xl": 6,
-            "newLine": true
+        "_tokenInfo": {
+            "type": "custom",
+            "url": "custom/customComponents.js",
+            "name": "EnergyTrackerAdmin/Components/TokenInfo",
+            "guiApi": 2,
+            "bundlerType": "module",
+            "newLine": true,
+            "xs": 12
         },
-        "retryDelay": {
-            "type": "number",
-            "label": "labelRetryDelay",
-            "min": 1,
-            "max": 60,
-            "default": 2,
-            "hidden": "!data.timeoutRetries",
+        "sendEnabled": {
+            "type": "checkbox",
+            "label": "labelSendEnabled",
+            "help": "helpSendEnabled",
+            "default": false,
+            "newLine": true,
             "xs": 12,
-            "sm": 6,
-            "md": 6,
-            "lg": 6,
-            "xl": 6
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+        },
+        "sendSchedule": {
+            "type": "cron",
+            "label": "labelSendSchedule",
+            "help": "helpSendSchedule",
+            "default": "0 0 * * 0",
+            "hidden": "!data.sendEnabled",
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12,
+            "simple": true
+        },
+        "_devicesHeader": {
+            "type": "header",
+            "text": "headerSendDevices",
+            "size": 3,
+            "xs": 12,
+            "newLine": true
         },
         "devices": {
             "type": "table",
-            "label": "headerDevices",
+            "label": "headerSendDevices",
             "uniqueColumns": ["deviceId"],
             "xs": 12,
             "sm": 12,
@@ -63,18 +115,25 @@
             "xl": 12,
             "items": [
                 {
-                    "type": "text",
+                    "type": "autocompleteSendTo",
                     "attr": "deviceId",
                     "label": "labelDeviceId",
-                    "allowEmpty": false,
-                    "trim": true
+                    "command": "getDevices",
+                    "help": "${data.deviceId || 'helpDeviceSelection'}",
+                    "freeSolo": true,
+                    "alsoDependsOn": ["deviceId"]
                 },
                 {
-                    "type": "text",
+                    "type": "objectId",
                     "attr": "sourceState",
                     "label": "labelSourceState",
-                    "allowEmpty": false,
-                    "trim": true
+                    "help": "${data.sourceState || ''}",
+                    "customFilter": {
+                        "type": "state",
+                        "common": {
+                            "type": ["number", "string"]
+                        }
+                    }
                 },
                 {
                     "type": "checkbox",
@@ -83,7 +142,143 @@
                     "default": true
                 }
             ],
+            "newLine": true,
+            "disabled": "data.bearerToken !== originalData.bearerToken",
+            "useCardFor": ["xs", "sm", "md", "lg", "xl"]
+        },
+        "readIntro": {
+            "type": "staticText",
+            "label": "helpReadDevices",
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+        },
+        "timeZone": {
+            "type": "autocompleteSendTo",
+            "label": "labelTimeZone",
+            "help": "helpTimeZone",
+            "command": "getTimeZones",
+            "jsonData": "{\"timeZone\": \"${data.timeZone}\"}",
+            "freeSolo": false,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12,
             "newLine": true
+        },
+        "_readDevicesHeader": {
+            "type": "header",
+            "text": "headerReadDevices",
+            "size": 3,
+            "xs": 12,
+            "newLine": true
+        },
+        "readDevices": {
+            "type": "table",
+            "label": "headerReadDevices",
+            "uniqueColumns": ["deviceId"],
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12,
+            "items": [
+                {
+                    "type": "autocompleteSendTo",
+                    "attr": "deviceId",
+                    "label": "labelDeviceId",
+                    "command": "getDevices",
+                    "help": "${data.deviceId || 'helpDeviceSelection'}",
+                    "freeSolo": true,
+                    "alsoDependsOn": ["deviceId"]
+                },
+                {
+                    "type": "text",
+                    "attr": "unit",
+                    "label": "labelUnit",
+                    "trim": true
+                },
+                {
+                    "type": "select",
+                    "attr": "extrapolationInterval",
+                    "label": "labelExtrapolationInterval",
+                    "default": "month",
+                    "options": [
+                        {
+                            "value": "day",
+                            "label": "intervalDay"
+                        },
+                        {
+                            "value": "week",
+                            "label": "intervalWeek"
+                        },
+                        {
+                            "value": "month",
+                            "label": "intervalMonth"
+                        },
+                        {
+                            "value": "quarter",
+                            "label": "intervalQuarter"
+                        },
+                        {
+                            "value": "year",
+                            "label": "intervalYear"
+                        }
+                    ],
+                    "help": "helpExtrapolationInterval"
+                },
+                {
+                    "type": "number",
+                    "attr": "forecastPeriods",
+                    "label": "${'labelForecastPeriods_' + (data.extrapolationInterval || 'month')}",
+                    "help": "${'helpForecastPeriods_' + (data.extrapolationInterval || 'month')}",
+                    "default": 3,
+                    "min": 1,
+                    "max": 36,
+                    "step": 1
+                }
+            ],
+            "disabled": "data.bearerToken !== originalData.bearerToken",
+            "useCardFor": ["xs", "sm", "md", "lg", "xl"]
+        },
+        "pollInterval": {
+            "type": "select",
+            "label": "labelPollInterval",
+            "help": "helpPollInterval",
+            "default": 60,
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12,
+            "options": [
+                {
+                    "value": 60,
+                    "label": "60 s"
+                },
+                {
+                    "value": 120,
+                    "label": "120 s"
+                },
+                {
+                    "value": 300,
+                    "label": "300 s"
+                },
+                {
+                    "value": 900,
+                    "label": "900 s"
+                },
+                {
+                    "value": 3600,
+                    "label": "3600 s"
+                }
+            ]
         }
     }
 }

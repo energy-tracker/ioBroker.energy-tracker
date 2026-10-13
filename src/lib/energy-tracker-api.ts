@@ -7,34 +7,27 @@ import {
     NetworkError,
     RateLimitError,
     TimeoutError,
-    ValidationError,
 } from '@energy-tracker/api-client';
 import { setTimeout as delay } from 'node:timers/promises';
 import Decimal from 'decimal.js';
+import type { RequestBudget } from './request-budget';
+
+const RETRY_DELAYS = [2, 5, 10, 30, 60] as const;
 
 /** Sends source states through the SDK and reports confirmed delivery. */
 export class EnergyTrackerApi {
     /**
-     * Create the adapter's reading sender with optional timeout retries.
+     * Create the reading sender with bounded timeout and server-error retries.
      *
      * @param adapter Adapter for reading source states and reporting results
      * @param client Energy Tracker SDK client
-     * @param retries Additional attempts after a timeout (0–2)
-     * @param retryDelay Delay between attempts in seconds (1–60)
+     * @param budget Shared request spacing and rate-limit cooldown
      */
     constructor(
         private readonly adapter: ioBroker.Adapter,
         private readonly client: Pick<EnergyTrackerClient, 'meterReadings'>,
-        private readonly retries = 0,
-        private readonly retryDelay = 2,
-    ) {
-        if (!Number.isInteger(retries) || retries < 0 || retries > 2) {
-            throw new ValidationError('Timeout retries must be an integer between 0 and 2');
-        }
-        if (retries > 0 && (!Number.isFinite(retryDelay) || retryDelay < 1 || retryDelay > 60)) {
-            throw new ValidationError('Retry delay must be between 1 and 60 seconds');
-        }
-    }
+        private readonly budget?: RequestBudget,
+    ) {}
 
     /**
      * Send a reading without changing the batch's connection state.
@@ -44,36 +37,33 @@ export class EnergyTrackerApi {
      * @returns Whether the server confirmed that the reading was saved
      */
     async sendReading(device: ioBroker.AdapterDevice, signal?: AbortSignal): Promise<boolean> {
+        if (signal?.aborted) {
+            return false;
+        }
         const prefix = `[${device.sourceState}]`;
         let attempt = 0;
         try {
-            const state = await this.adapter.getForeignStateAsync(device.sourceState);
-            if (signal?.aborted) {
+            const initialReading = await this.readSource(device, prefix, signal);
+            if (!initialReading) {
                 return false;
             }
-            if (
-                !state ||
-                (typeof state.val !== 'number' && typeof state.val !== 'string') ||
-                (typeof state.val === 'number' && !Number.isFinite(state.val)) ||
-                (typeof state.val === 'string' && !/^-?\d+(?:\.\d+)?$/.test(state.val))
-            ) {
-                this.adapter.log.warn(`${prefix} Invalid or missing numeric state`);
-                return false;
-            }
-
-            const value = new Decimal(state.val);
-            if (value.isNegative() && !value.isZero()) {
-                this.adapter.log.warn(`${prefix} Reading must not be negative`);
-                return false;
-            }
-
-            // Pin the timestamp when retrying: the server rejects duplicate readings at the same time.
-            const reading = {
-                value: value.toDecimalPlaces(6, Decimal.ROUND_DOWN).toFixed(),
-                ...(this.retries > 0 ? { timestamp: new Date() } : {}),
-            };
+            let reading = initialReading;
             for (;;) {
                 try {
+                    if (this.budget && !this.budget.available) {
+                        this.adapter.log.warn(`${prefix} Reading submission skipped: API cooldown`);
+                        return false;
+                    }
+                    await this.budget?.acquire(signal);
+                    signal?.throwIfAborted();
+                    if (this.budget && attempt === 0) {
+                        // A queued request may wait for other transfers or a rate-limit cooldown.
+                        const latestReading = await this.readSource(device, prefix, signal);
+                        if (!latestReading) {
+                            return false;
+                        }
+                        reading = latestReading;
+                    }
                     await this.client.meterReadings.create(device.deviceId, reading, {
                         allowRounding: device.allowRounding,
                         signal,
@@ -81,22 +71,65 @@ export class EnergyTrackerApi {
                     this.adapter.log.info(`${prefix} Reading sent: ${reading.value}`);
                     return true;
                 } catch (err) {
-                    if (!(err instanceof TimeoutError) || attempt >= this.retries || signal?.aborted) {
+                    const retryable =
+                        err instanceof TimeoutError ||
+                        (err instanceof EnergyTrackerAPIError &&
+                            err.statusCode !== null &&
+                            err.statusCode >= 500 &&
+                            err.statusCode < 600);
+                    if (!retryable || attempt >= RETRY_DELAYS.length || signal?.aborted) {
                         throw err;
                     }
+                    const seconds = RETRY_DELAYS[attempt];
                     attempt++;
+                    const reason = err instanceof TimeoutError ? 'timeout' : `HTTP ${err.statusCode}`;
                     this.adapter.log.warn(
-                        `${prefix} Request timed out; retry ${attempt}/${this.retries} in ${this.retryDelay} seconds`,
+                        `${prefix} ${reason}; retry ${attempt}/${RETRY_DELAYS.length} after ${seconds} seconds`,
                     );
-                    await delay(this.retryDelay * 1000, undefined, { signal });
+                    await delay(seconds * 1000, undefined, { signal });
                 }
             }
         } catch (err) {
+            if (err instanceof RateLimitError && !signal?.aborted) {
+                await this.budget?.defer(err.retryAfter);
+            }
             if (!signal?.aborted) {
                 this.handleError(prefix, err, attempt > 0);
             }
             return false;
         }
+    }
+
+    private async readSource(
+        device: ioBroker.AdapterDevice,
+        prefix: string,
+        signal?: AbortSignal,
+    ): Promise<{ value: string; timestamp?: Date } | null> {
+        const state = await this.adapter.getForeignStateAsync(device.sourceState);
+        if (signal?.aborted) {
+            return null;
+        }
+        if (
+            !state ||
+            (typeof state.val !== 'number' && typeof state.val !== 'string') ||
+            (typeof state.val === 'number' && !Number.isFinite(state.val)) ||
+            (typeof state.val === 'string' && !/^-?\d+(?:\.\d+)?$/.test(state.val))
+        ) {
+            this.adapter.log.warn(`${prefix} Invalid or missing numeric state`);
+            return null;
+        }
+
+        const value = new Decimal(state.val);
+        if (value.isNegative() && !value.isZero()) {
+            this.adapter.log.warn(`${prefix} Reading must not be negative`);
+            return null;
+        }
+
+        // All attempts reuse the same timestamp: the server rejects duplicate readings at that time.
+        return {
+            value: value.toDecimalPlaces(6, Decimal.ROUND_DOWN).toFixed(),
+            timestamp: new Date(),
+        };
     }
 
     private handleError(prefix: string, err: unknown, retried: boolean): void {
@@ -108,7 +141,7 @@ export class EnergyTrackerApi {
             this.adapter.log.error(`${prefix} Request timed out after 10 seconds; the reading may already be saved`);
         } else if (err instanceof ConflictError && retried) {
             this.adapter.log.warn(
-                `${prefix} Conflict after timeout: the submission outcome is uncertain; check the reading in Energy Tracker`,
+                `${prefix} Conflict after retry: the submission outcome is uncertain; check the reading in Energy Tracker`,
             );
         } else if (err instanceof RateLimitError) {
             const retryAfter = err.retryAfter === null ? '' : ` – Retry after ${err.retryAfter} seconds.`;

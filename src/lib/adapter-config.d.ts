@@ -8,9 +8,19 @@ declare global {
 
         interface AdapterConfig {
             bearerToken: string;
-            timeoutRetries: number;
-            retryDelay: number;
             devices: AdapterDevice[];
+            sendEnabled?: boolean;
+            sendSchedule?: string;
+            readDevices?: AdapterReadDevice[];
+            timeZone?: string;
+            pollInterval?: number;
+        }
+
+        interface AdapterReadDevice {
+            deviceId: string;
+            unit?: string;
+            extrapolationInterval: 'day' | 'week' | 'month' | 'quarter' | 'year';
+            forecastPeriods?: number;
         }
     }
 }
