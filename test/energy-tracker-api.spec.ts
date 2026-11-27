@@ -29,7 +29,7 @@ describe('EnergyTrackerApi', () => {
         expect(await api.sendReading(device)).to.equal(true);
         const [url, init] = fetchMock.firstCall.args as [string, RequestInit];
         expect(String(url)).to.equal(
-            'https://public-api.energy-tracker.best-ios-apps.de/v3/devices/standard/device-1/meter-readings?allowRounding=false',
+            'https://public-api.energy-tracker.app/v3/devices/standard/device-1/meter-readings?allowRounding=false',
         );
         expect(init.method).to.equal('POST');
         expect(new Headers(init.headers).get('authorization')).to.equal('Bearer test-token');

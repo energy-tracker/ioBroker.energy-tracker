@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "energy-tracker",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "news": {
+            "1.1.0": {
+                "en": "Use the new Energy Tracker API host public-api.energy-tracker.app.",
+                "de": "Den neuen Energy Tracker API-Host public-api.energy-tracker.app verwenden.",
+                "ru": "Использование нового хоста API Energy Tracker public-api.energy-tracker.app.",
+                "pt": "Utiliza o novo host da API Energy Tracker public-api.energy-tracker.app.",
+                "nl": "Gebruikt de nieuwe Energy Tracker API-host public-api.energy-tracker.app.",
+                "fr": "Utilise le nouvel hôte de l’API Energy Tracker public-api.energy-tracker.app.",
+                "it": "Utilizza il nuovo host dell’API Energy Tracker public-api.energy-tracker.app.",
+                "es": "Utiliza el nuevo host de la API de Energy Tracker public-api.energy-tracker.app.",
+                "pl": "Korzysta z nowego hosta API Energy Tracker public-api.energy-tracker.app.",
+                "uk": "Перехід на новий хост API Energy Tracker public-api.energy-tracker.app.",
+                "zh-cn": "使用新的 Energy Tracker API 主机 public-api.energy-tracker.app。"
+            },
             "1.0.0": {
                 "en": "Use the Energy Tracker SDK and API v3, truncate readings to six decimal places, fix connection status and add optional timeout retries. Requires Node.js 22 or newer.",
                 "de": "Energy Tracker SDK und API v3 verwenden, Messwerte auf sechs Nachkommastellen abschneiden, Verbindungsstatus korrigieren und optionale Wiederholungen bei Zeitüberschreitung ergänzen. Erfordert Node.js 22 oder neuer.",
@@ -80,19 +93,6 @@
                 "pl": "Dodano Uwaga ReadMe: harmonogram wymagany w IOBRAKER.",
                 "uk": "Додано Readme Примітка: графік, необхідний в iobroker.",
                 "zh-cn": "添加了注册信息注：IOBROKR中需要的时间表。"
-            },
-            "0.2.5": {
-                "en": "Updated dependencies for testing and added Node.js v24 to adapter tests",
-                "de": "Testabhängigkeiten aktualisiert und Node.js v24 zu den Adapter-Tests hinzugefügt.",
-                "ru": "Обновленные зависимости для тестирования и добавленного Node.js V24 к адаптерным тестам",
-                "pt": "Dependências atualizadas para teste e adicionado node.js v24 aos testes de adaptador",
-                "nl": "Bijgewerkte afhankelijkheden voor testen en toegevoegde node.js v24 aan adaptertests",
-                "fr": "Dépendances mises à jour pour les tests et ajouté Node.js V24 aux tests d'adaptateur",
-                "it": "Dipendenze aggiornate per i test e aggiunto nodo.js v24 ai test dell'adattatore",
-                "es": "Dependencias actualizadas para pruebas y se agregan Node.js V24 a las pruebas de adaptador",
-                "pl": "Zaktualizowano zależności testowania i dodane node.js v24 do testów adapterów",
-                "uk": "Оновлені залежності для тестування та додавання Node.js v24 до тестів на адаптер",
-                "zh-cn": "用于测试和添加Node.js V24的更新依赖项到适配器测试"
             }
         },
         "titleLang": {
