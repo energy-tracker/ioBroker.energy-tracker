@@ -47,6 +47,10 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 
 ## Changelog
 
+### 1.1.0
+
+- Use the new API host `public-api.energy-tracker.app` through API client 2.2.0.
+
 ### 1.0.0
 
 **Before upgrading:** Node.js 22 or newer, ioBroker js-controller 6.0.11 or newer and ioBroker Admin 7.6.20 or newer are required.
@@ -76,6 +80,10 @@ Without a schedule, the adapter will not fetch or transmit any data automaticall
 ### 0.2.7
 
 - Updated ESLint to v9, fixed repository URL in package.json, and improved test coverage.
+
+### 0.2.6
+
+- Added README note: schedule required in ioBroker.
 
 [Older changes](https://github.com/energy-tracker/ioBroker.energy-tracker/blob/main/CHANGELOG_OLD.md)
 
